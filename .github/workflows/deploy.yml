@@ -29,6 +29,8 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Run browser tests
         run: npm test
+      - name: Verify lesson audio coverage and files
+        run: npm run voice:check
       - name: Test account flows
         run: npm run test:accounts
       - name: Verify database access rules

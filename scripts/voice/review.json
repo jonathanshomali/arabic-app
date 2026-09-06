@@ -1,0 +1,812 @@
+[
+  {
+    "ar": "مرحبا",
+    "latin": "marhaba",
+    "en": "Hello",
+    "phonemes": "mˈarħaba",
+    "file": "2cf04fa7cf65e4bd.wav",
+    "seconds": 1.995,
+    "rms": 0.05541,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "أهلين",
+    "latin": "ahleen",
+    "en": "Hi there",
+    "phonemes": "ʔahlˈeːn",
+    "file": "9039f9ee8b2e24e8.wav",
+    "seconds": 1.795,
+    "rms": 0.05563,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "شكراً",
+    "latin": "shukran",
+    "en": "Thank you",
+    "phonemes": "ʃˈukran",
+    "file": "fb5f26acd9bd742c.wav",
+    "seconds": 1.87,
+    "rms": 0.05562,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "يلا",
+    "latin": "yalla",
+    "en": "Let’s go",
+    "phonemes": "jˈalla",
+    "file": "a10a0bcd9280be2a.wav",
+    "seconds": 1.72,
+    "rms": 0.05565,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "مع السلامة",
+    "latin": "ma‘ is-salaameh",
+    "en": "Goodbye",
+    "phonemes": "maʕ issalˈaːme",
+    "file": "9507ba281d52f772.wav",
+    "seconds": 2.145,
+    "rms": 0.05571,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "كيفك؟",
+    "latin": "keefak? / keefik?",
+    "en": "How are you?",
+    "phonemes": "kˈiːfak?",
+    "file": "1fbe7920c253c84d.wav",
+    "seconds": 1.895,
+    "rms": 0.05587,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "منيح",
+    "latin": "mneeh",
+    "en": "Good",
+    "phonemes": "mnˈiːħ",
+    "file": "bfbcbaa18ba9a2cf.wav",
+    "seconds": 1.795,
+    "rms": 0.05542,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "الحمد لله",
+    "latin": "il-hamdillah",
+    "en": "Thank God",
+    "phonemes": "ilħˈamdilla",
+    "file": "9c34a87b2911926b.wav",
+    "seconds": 2.095,
+    "rms": 0.05574,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "وإنت؟",
+    "latin": "w inta? / w inti?",
+    "en": "And you?",
+    "phonemes": "w ˈinta?",
+    "file": "3db9b2b1e0972604.wav",
+    "seconds": 1.82,
+    "rms": 0.05584,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "تمام",
+    "latin": "tamaam",
+    "en": "All good",
+    "phonemes": "tamˈaːm",
+    "file": "d72d27506a2c09e6.wav",
+    "seconds": 1.72,
+    "rms": 0.05577,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "شو اسمك؟",
+    "latin": "shu ismak? / shu ismik?",
+    "en": "What’s your name?",
+    "phonemes": "ʃu ˈismak?",
+    "file": "da31fc78729c303a.wav",
+    "seconds": 2.095,
+    "rms": 0.05573,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "اسمي",
+    "latin": "ismi",
+    "en": "My name is",
+    "phonemes": "ˈismi",
+    "file": "16104a04d5048cd1.wav",
+    "seconds": 1.695,
+    "rms": 0.05568,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "أنا من فلسطين",
+    "latin": "ana min falasteen",
+    "en": "I’m from Palestine",
+    "phonemes": "ˈana min falastˈiːn",
+    "file": "b511d28d6cd62d4b.wav",
+    "seconds": 2.295,
+    "rms": 0.0556,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "أهلاً وسهلاً",
+    "latin": "ahlan w sahlan",
+    "en": "Welcome",
+    "phonemes": "ˈahlan w sˈahlan",
+    "file": "7cef9f6f367c0f3e.wav",
+    "seconds": 2.395,
+    "rms": 0.05578,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "تشرفنا",
+    "latin": "tsharrafna",
+    "en": "Nice to meet you",
+    "phonemes": "tʃarrˈafna",
+    "file": "9dc89f01681d6b00.wav",
+    "seconds": 2.12,
+    "rms": 0.05557,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "آه",
+    "latin": "aah",
+    "en": "Yes",
+    "phonemes": "ˈaːh",
+    "file": "6b9819198e8ea931.wav",
+    "seconds": 1.47,
+    "rms": 0.05562,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "لا",
+    "latin": "laa",
+    "en": "No",
+    "phonemes": "lˈaː",
+    "file": "0dacfdf20a576a7a.wav",
+    "seconds": 1.495,
+    "rms": 0.05569,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "لو سمحت",
+    "latin": "law samaht / law samahti",
+    "en": "Please / excuse me",
+    "phonemes": "law samˈaħt",
+    "file": "52b3f39ea83e3c2c.wav",
+    "seconds": 2.22,
+    "rms": 0.05581,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "بدي",
+    "latin": "biddi",
+    "en": "I want",
+    "phonemes": "bˈiddi",
+    "file": "53c8470bf7728213.wav",
+    "seconds": 1.845,
+    "rms": 0.05579,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "ما بعرف",
+    "latin": "ma ba‘raf",
+    "en": "I don’t know",
+    "phonemes": "ma bˈaʕraf",
+    "file": "cb6619d20999beba.wav",
+    "seconds": 2.045,
+    "rms": 0.05593,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "قهوة",
+    "latin": "ahweh",
+    "en": "Coffee",
+    "phonemes": "ˈʔahwe",
+    "file": "0167cd173ed8926f.wav",
+    "seconds": 1.745,
+    "rms": 0.05579,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "شاي",
+    "latin": "shaay",
+    "en": "Tea",
+    "phonemes": "ʃˈaːj",
+    "file": "e35e5e04c47aba60.wav",
+    "seconds": 1.695,
+    "rms": 0.05575,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "مي",
+    "latin": "mayy",
+    "en": "Water",
+    "phonemes": "mˈajj",
+    "file": "6308ea80d25bc527.wav",
+    "seconds": 1.645,
+    "rms": 0.05571,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "بدون سكر",
+    "latin": "bidoon sukkar",
+    "en": "Without sugar",
+    "phonemes": "bidˈuːn sˈukkar",
+    "file": "3e5e50a2861e0a41.wav",
+    "seconds": 2.42,
+    "rms": 0.05569,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "الحساب لو سمحت",
+    "latin": "il-hsaab law samaht",
+    "en": "The bill, please",
+    "phonemes": "ilħsˈaːb law samˈaħt",
+    "file": "9d0c60b97286f989.wav",
+    "seconds": 2.87,
+    "rms": 0.05562,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "خبز",
+    "latin": "khubiz",
+    "en": "Bread",
+    "phonemes": "xˈubiz",
+    "file": "631f90aa2582c3b1.wav",
+    "seconds": 1.845,
+    "rms": 0.05565,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "زيت زيتون",
+    "latin": "zeit zaytoon",
+    "en": "Olive oil",
+    "phonemes": "zˈeːt zajtˈuːn",
+    "file": "b7042c1294b559e8.wav",
+    "seconds": 2.245,
+    "rms": 0.05563,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "زعتر",
+    "latin": "za‘tar",
+    "en": "Za’atar",
+    "phonemes": "zˈaʕtar",
+    "file": "5dedcf308cf3c46f.wav",
+    "seconds": 1.945,
+    "rms": 0.0557,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "زاكي",
+    "latin": "zaaki",
+    "en": "Delicious",
+    "phonemes": "zˈaːki",
+    "file": "fbcd7e6b8230a791.wav",
+    "seconds": 1.87,
+    "rms": 0.05562,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "صحتين",
+    "latin": "sahtein",
+    "en": "Enjoy your meal",
+    "phonemes": "sˤaħtˈeːn",
+    "file": "a545e36abf7ae23b.wav",
+    "seconds": 1.945,
+    "rms": 0.0557,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "وين؟",
+    "latin": "wein?",
+    "en": "Where?",
+    "phonemes": "wˈeːn?",
+    "file": "799a85f5df510c98.wav",
+    "seconds": 1.645,
+    "rms": 0.05581,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "هون",
+    "latin": "hoon",
+    "en": "Here",
+    "phonemes": "hˈoːn",
+    "file": "524ad962fe6b37c8.wav",
+    "seconds": 1.595,
+    "rms": 0.05563,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "هناك",
+    "latin": "hunaak",
+    "en": "There",
+    "phonemes": "hunˈaːk",
+    "file": "9e64b36ae41db277.wav",
+    "seconds": 1.845,
+    "rms": 0.05579,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "يمين",
+    "latin": "yameen",
+    "en": "Right",
+    "phonemes": "jamˈiːn",
+    "file": "3eb2201d68235273.wav",
+    "seconds": 1.77,
+    "rms": 0.05579,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "شمال",
+    "latin": "shmaal",
+    "en": "Left",
+    "phonemes": "ʃmˈaːl",
+    "file": "a16b17e933e8a5db.wav",
+    "seconds": 1.87,
+    "rms": 0.05557,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "بدي قهوة",
+    "latin": "biddi ahweh",
+    "en": "I want a coffee",
+    "phonemes": "bˈiddi ˈʔahwe",
+    "file": "bbd89fa82ce8c152.wav",
+    "seconds": 2.095,
+    "rms": 0.05571,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "وين القهوة؟",
+    "latin": "wein il-ahweh?",
+    "en": "Where is the coffee?",
+    "phonemes": "wˈeːn ilˈʔahwe?",
+    "file": "65d0945a5df24eb2.wav",
+    "seconds": 2.07,
+    "rms": 0.05568,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "شو بدك؟",
+    "latin": "shu biddak? / shu biddik?",
+    "en": "What do you want?",
+    "phonemes": "ʃu bˈiddak?",
+    "file": "3c70a54fc56c9b82.wav",
+    "seconds": 2.095,
+    "rms": 0.05584,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "يلا نروح",
+    "latin": "yalla nrooh",
+    "en": "Let’s leave",
+    "phonemes": "jˈalla nrˈuːħ",
+    "file": "9dc0aa5d3f102daa.wav",
+    "seconds": 2.12,
+    "rms": 0.05572,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "بشوفك بكرا",
+    "latin": "bshoofak bukra / bshoofik bukra",
+    "en": "See you tomorrow",
+    "phonemes": "bʃˈuːfak bˈukra",
+    "file": "0ea5e86065b9ab5c.wav",
+    "seconds": 2.42,
+    "rms": 0.05577,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "أمي",
+    "latin": "immi",
+    "en": "My mother",
+    "phonemes": "ˈimmi",
+    "file": "7b15536279f7d27e.wav",
+    "seconds": 1.545,
+    "rms": 0.05575,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "أبوي",
+    "latin": "abooy",
+    "en": "My father",
+    "phonemes": "ʔabˈuːj",
+    "file": "3e63be725c4eac7d.wav",
+    "seconds": 1.745,
+    "rms": 0.05555,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "أخوي",
+    "latin": "akhooy",
+    "en": "My brother",
+    "phonemes": "ʔaxˈuːj",
+    "file": "a611b0e898bbdd53.wav",
+    "seconds": 1.72,
+    "rms": 0.05562,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "أختي",
+    "latin": "ukhti",
+    "en": "My sister",
+    "phonemes": "ˈʔuxti",
+    "file": "3c485ab204b9ae01.wav",
+    "seconds": 1.795,
+    "rms": 0.05569,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "صاحبي",
+    "latin": "saahbi",
+    "en": "My friend",
+    "phonemes": "sˤˈaːħbi",
+    "file": "8dd6c1527f59e994.wav",
+    "seconds": 1.97,
+    "rms": 0.05575,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "واحد",
+    "latin": "waahad",
+    "en": "One",
+    "phonemes": "wˈaːħad",
+    "file": "d8d6d83b01c6d6a2.wav",
+    "seconds": 1.87,
+    "rms": 0.05597,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "تنين",
+    "latin": "tnein",
+    "en": "Two",
+    "phonemes": "tnˈeːn",
+    "file": "83585a44d4daa46a.wav",
+    "seconds": 1.87,
+    "rms": 0.05578,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "تلاتة",
+    "latin": "tlaateh",
+    "en": "Three",
+    "phonemes": "tlˈaːte",
+    "file": "436154aa8a74232f.wav",
+    "seconds": 1.895,
+    "rms": 0.05561,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "أربعة",
+    "latin": "arba‘a",
+    "en": "Four",
+    "phonemes": "ˈʔarbaʕa",
+    "file": "9be7b30978e3caa6.wav",
+    "seconds": 1.845,
+    "rms": 0.05561,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "خمسة",
+    "latin": "khamseh",
+    "en": "Five",
+    "phonemes": "xˈamse",
+    "file": "dd533fe991ea4f14.wav",
+    "seconds": 1.745,
+    "rms": 0.05569,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "قديش؟",
+    "latin": "addeish?",
+    "en": "How much?",
+    "phonemes": "ʔaddˈeːʃ?",
+    "file": "181cd7b9fdbb154d.wav",
+    "seconds": 1.92,
+    "rms": 0.05589,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "قديش هادا؟",
+    "latin": "addeish haada?",
+    "en": "How much is this?",
+    "phonemes": "ʔaddˈeːʃ hˈaːda?",
+    "file": "dbe3caef707dd602.wav",
+    "seconds": 2.27,
+    "rms": 0.05572,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "غالي",
+    "latin": "ghaali",
+    "en": "Expensive",
+    "phonemes": "ɣˈaːli",
+    "file": "29558fc6edf3a0ae.wav",
+    "seconds": 1.745,
+    "rms": 0.05567,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "رخيص",
+    "latin": "rkhees",
+    "en": "Inexpensive",
+    "phonemes": "rxˈiːsˤ",
+    "file": "a2bcf5d4495ad3bf.wav",
+    "seconds": 1.995,
+    "rms": 0.05579,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "بدي هادا",
+    "latin": "biddi haada",
+    "en": "I want this one",
+    "phonemes": "bˈiddi hˈaːda",
+    "file": "6111ff16e0d130a0.wav",
+    "seconds": 2.12,
+    "rms": 0.05565,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "اليوم",
+    "latin": "il-yoom",
+    "en": "Today",
+    "phonemes": "iljˈoːm",
+    "file": "481c876eb1bdb49d.wav",
+    "seconds": 1.845,
+    "rms": 0.05564,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "بكرا",
+    "latin": "bukra",
+    "en": "Tomorrow",
+    "phonemes": "bˈukra",
+    "file": "dabf0788c187f5df.wav",
+    "seconds": 1.795,
+    "rms": 0.0559,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "مبارح",
+    "latin": "mbaareh",
+    "en": "Yesterday",
+    "phonemes": "mbˈaːriħ",
+    "file": "6b6ae5609d41de03.wav",
+    "seconds": 1.895,
+    "rms": 0.05557,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "هلأ",
+    "latin": "halla’",
+    "en": "Now",
+    "phonemes": "hˈallaʔ",
+    "file": "1e3c488f31893359.wav",
+    "seconds": 1.645,
+    "rms": 0.05565,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "بعدين",
+    "latin": "ba‘dein",
+    "en": "Later",
+    "phonemes": "baʕdˈeːn",
+    "file": "4cdd15141d69af7f.wav",
+    "seconds": 1.995,
+    "rms": 0.05572,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "مبسوط",
+    "latin": "mabsoot",
+    "en": "Happy",
+    "phonemes": "mabsˈuːtˤ",
+    "file": "203e3d3acfd48298.wav",
+    "seconds": 2.045,
+    "rms": 0.05576,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "تعبان",
+    "latin": "ta‘baan",
+    "en": "Tired",
+    "phonemes": "taʕbˈaːn",
+    "file": "2f696a6856e25d9b.wav",
+    "seconds": 1.945,
+    "rms": 0.05553,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "جوعان",
+    "latin": "joo‘aan",
+    "en": "Hungry",
+    "phonemes": "ʤuːʕˈaːn",
+    "file": "aecb64b219105187.wav",
+    "seconds": 1.87,
+    "rms": 0.05589,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "عطشان",
+    "latin": "‘atshaan",
+    "en": "Thirsty",
+    "phonemes": "ʕatˤʃˈaːn",
+    "file": "68ae24417e1898b6.wav",
+    "seconds": 2.145,
+    "rms": 0.05559,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "مشغول",
+    "latin": "mashghool",
+    "en": "Busy",
+    "phonemes": "maʃɣˈuːl",
+    "file": "fe31c099bbd4beac.wav",
+    "seconds": 1.97,
+    "rms": 0.05556,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "شو رأيك؟",
+    "latin": "shu ra’yak? / shu ra’yik?",
+    "en": "What do you think?",
+    "phonemes": "ʃu rˈaʔjak?",
+    "file": "3e2ea3a1c02df0de.wav",
+    "seconds": 2.095,
+    "rms": 0.05579,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "نروح؟",
+    "latin": "nrooh?",
+    "en": "Shall we go?",
+    "phonemes": "nrˈuːħ?",
+    "file": "c45f9e6fbf84233b.wav",
+    "seconds": 1.87,
+    "rms": 0.0557,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "عالبيت",
+    "latin": "‘al-beit",
+    "en": "To the house",
+    "phonemes": "ʕalbˈeːt",
+    "file": "0079c4803b5bd957.wav",
+    "seconds": 2.02,
+    "rms": 0.05573,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "عالسوق",
+    "latin": "‘as-soo’",
+    "en": "To the market",
+    "phonemes": "ʕassˈuːʔ",
+    "file": "c9485dec3e5c7792.wav",
+    "seconds": 1.92,
+    "rms": 0.05585,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "مع بعض",
+    "latin": "ma‘ ba‘d",
+    "en": "Together",
+    "phonemes": "maʕ bˈaʕdˤ",
+    "file": "72483da43e6c7e2e.wav",
+    "seconds": 1.92,
+    "rms": 0.0558,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "مش فاهم",
+    "latin": "mish faahem",
+    "en": "I don’t understand",
+    "phonemes": "miʃ fˈaːhim",
+    "file": "83496c34b2afb844.wav",
+    "seconds": 2.07,
+    "rms": 0.05573,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "كمان مرة",
+    "latin": "kamaan marra",
+    "en": "One more time",
+    "phonemes": "kamˈaːn mˈarra",
+    "file": "ef6711fe13d64b02.wav",
+    "seconds": 2.045,
+    "rms": 0.05568,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "شوي شوي",
+    "latin": "shway shway",
+    "en": "Little by little / slowly",
+    "phonemes": "ʃwˈajj ʃwˈajj",
+    "file": "9bc686af3effb6ed.wav",
+    "seconds": 2.02,
+    "rms": 0.05562,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "شو يعني؟",
+    "latin": "shu ya‘ni?",
+    "en": "What does it mean?",
+    "phonemes": "ʃu jˈaʕni?",
+    "file": "b9d25c31f2b7a697.wav",
+    "seconds": 1.97,
+    "rms": 0.05573,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "بحكي عربي شوي",
+    "latin": "bahki ‘arabi shway",
+    "en": "I speak a little Arabic",
+    "phonemes": "bˈaħki ʕˈarabi ʃwˈajj",
+    "file": "a37d3a4a623bd185.wav",
+    "seconds": 2.545,
+    "rms": 0.05588,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "تفضل",
+    "latin": "tfaddal",
+    "en": "Please, go ahead",
+    "phonemes": "tfˈadˤdˤal",
+    "file": "9b35fd1a5344f8ed.wav",
+    "seconds": 1.845,
+    "rms": 0.05574,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "نورت",
+    "latin": "nawwart",
+    "en": "You’ve brightened the place",
+    "phonemes": "nˈawwart",
+    "file": "97a6f42d19bcb567.wav",
+    "seconds": 2.045,
+    "rms": 0.05566,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "يسلموا",
+    "latin": "yislamu",
+    "en": "Thanks a lot",
+    "phonemes": "jˈislamu",
+    "file": "bc60259204deca2e.wav",
+    "seconds": 1.895,
+    "rms": 0.05556,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "الله يعطيك العافية",
+    "latin": "alla ya‘teek il-‘aafyeh",
+    "en": "May God give you well-being",
+    "phonemes": "ˈalla jaʕtˈiːk ilʕˈaːfje",
+    "file": "dac8986912264e0d.wav",
+    "seconds": 2.77,
+    "rms": 0.0559,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "الله معك",
+    "latin": "alla ma‘ak / alla ma‘ik",
+    "en": "God be with you",
+    "phonemes": "ˈalla mˈaʕak",
+    "file": "a785126d51952c58.wav",
+    "seconds": 2.02,
+    "rms": 0.05564,
+    "nativeReviewed": false
+  },
+  {
+    "ar": "حبيبي",
+    "latin": "habibi",
+    "en": "My dear",
+    "phonemes": "ħabˈiːbi",
+    "file": "cb9682bf95ec9920.wav",
+    "seconds": 1.92,
+    "rms": 0.05558,
+    "nativeReviewed": false
+  }
+]

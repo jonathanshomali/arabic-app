@@ -43,7 +43,11 @@ import {
   type Progress,
 } from "./data";
 import { laterUnits } from "./moreLessons";
-import { usePronunciation } from "./usePronunciation";
+import {
+  usePronunciation,
+  loadVoiceChoice,
+  type VoiceChoice,
+} from "./usePronunciation";
 import { Modal } from "./Modal";
 import { AuthModal, type AuthMode } from "./AuthModal";
 import { useAccountProgress } from "./useAccountProgress";
@@ -86,6 +90,7 @@ function App() {
   const [settings, setSettings] = useState(false);
   const [about, setAbout] = useState(false);
   const [toast, setToast] = useState("");
+  const [voice, setVoice] = useState<VoiceChoice>(loadVoiceChoice);
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("All phrases");
   useEffect(() => {
@@ -104,10 +109,10 @@ function App() {
     speak,
     stop: stopAudio,
     speaking,
-  } = usePronunciation(progress.sound, setToast);
+  } = usePronunciation(progress.sound, setToast, voice);
   useEffect(() => {
     stopAudio();
-  }, [page, session, stopAudio]);
+  }, [page, session, settings, stopAudio]);
   function complete(lesson: Lesson, practice: boolean, score: number) {
     const xp = practice ? 10 : 30;
     setProgress((p) => ({
@@ -761,10 +766,10 @@ function App() {
                     )}
                   </div>
                   <p className="language-note">
-                    Pronunciation varies across Palestinian communities. Browser
-                    audio, when available, uses a system Arabic voice and may
-                    differ from Palestinian pronunciation. Follow the written
-                    pronunciation guide for dialect forms.
+                    Pronunciation varies across Palestinian communities. Choose
+                    the experimental Yalla Palestinian voice or your device’s
+                    Arabic voice in Settings. Use the written guide alongside
+                    audio.
                   </p>
                 </>
               )}
@@ -1036,6 +1041,17 @@ function App() {
         <SettingsModal
           progress={progress}
           setProgress={setProgress}
+          voice={voice}
+          onVoiceChange={(choice) => {
+            setVoice(choice);
+            try {
+              localStorage.setItem("yalla-voice", choice);
+            } catch {
+              setToast(
+                "Voice selected for this visit. Your browser couldn’t save the preference.",
+              );
+            }
+          }}
           account={account}
           onOpenAuth={() => {
             setSettings(false);
@@ -1085,9 +1101,17 @@ function App() {
             </p>
             <h3>A note on audio</h3>
             <p>
-              Audio needs an Arabic voice installed in your browser or operating
-              system. System voices may use standard Arabic pronunciation rather
-              than Palestinian dialect.
+              Settings includes an experimental AI-generated Palestinian voice
+              for all lessons, built with{" "}
+              <a
+                href="https://huggingface.co/hamdallah/Sofelia-TTS-82M"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Sofelia’s Eliaa voice
+              </a>
+              . It still needs native-speaker review. Device voices are also
+              available and may use standard Arabic pronunciation.
             </p>
             <p className="sources">
               Language references:{" "}
@@ -1432,16 +1456,23 @@ function SettingsModal({
   account,
   onOpenAuth,
   onClose,
+  voice,
+  onVoiceChange,
 }: {
   progress: Progress;
   account: ReturnType<typeof useAccountProgress>;
   onOpenAuth: () => void;
   setProgress: React.Dispatch<React.SetStateAction<Progress>>;
   onClose: () => void;
+  voice: VoiceChoice;
+  onVoiceChange: (voice: VoiceChoice) => void;
 }) {
   const [name, setName] = useState(progress.name);
   const [goal, setGoal] = useState(progress.goal);
   const [sound, setSound] = useState(progress.sound);
+  const [selectedVoice, setSelectedVoice] = useState(voice);
+  const [previewMessage, setPreviewMessage] = useState("");
+  const preview = usePronunciation(sound, setPreviewMessage, selectedVoice);
   const [confirm, setConfirm] = useState(false);
   const [accountError, setAccountError] = useState("");
   const [busy, setBusy] = useState(false);
@@ -1458,6 +1489,7 @@ function SettingsModal({
         onSubmit={(e) => {
           e.preventDefault();
           setProgress((p) => ({ ...p, name: name.trim(), goal, sound }));
+          onVoiceChange(selectedVoice);
           onClose();
         }}
       >
@@ -1582,7 +1614,7 @@ function SettingsModal({
         <label className="toggle-label">
           <span>
             Pronunciation audio
-            <small>Uses your device’s Arabic voice, when available.</small>
+            <small>Listen to words and phrases as you learn.</small>
           </span>
           <input
             type="checkbox"
@@ -1590,6 +1622,59 @@ function SettingsModal({
             onChange={(e) => setSound(e.target.checked)}
           />
         </label>
+        <label>
+          Learning voice
+          <select
+            value={selectedVoice}
+            onChange={(e) => {
+              setSelectedVoice(e.target.value as VoiceChoice);
+              setPreviewMessage("");
+            }}
+          >
+            <option value="system">Device Arabic voice</option>
+            <option value="yalla">
+              Yalla Palestinian voice · experimental
+            </option>
+          </select>
+        </label>
+        <div className="voice-preview">
+          <p>
+            {selectedVoice === "yalla"
+              ? "AI-generated Palestinian audio for every lesson, powered by Sofelia’s Eliaa voice. Pronunciation is experimental and hasn’t been reviewed by a native speaker yet."
+              : "Uses an installed Arabic voice. Your device may pronounce words in standard Arabic instead of Palestinian Arabic."}
+          </p>
+          <span className="eyebrow">TRY THE VOICE</span>
+          <div className="voice-samples">
+            {[
+              lessons[0].phrases[0],
+              lessons[7].phrases[0],
+              lessons[10].phrases[1],
+            ].map((phrase) => (
+              <button
+                type="button"
+                key={phrase.ar}
+                disabled={!sound}
+                aria-label={`Preview ${phrase.en}`}
+                aria-pressed={preview.speaking === phrase.ar}
+                onClick={() => {
+                  setPreviewMessage("");
+                  preview.speak(phrase);
+                }}
+              >
+                <Volume2 size={18} />
+                <span lang="ar" dir="rtl">
+                  {phrase.ar}
+                </span>
+                <small>{phrase.latin}</small>
+              </button>
+            ))}
+          </div>
+          <small>
+            Voice choice is saved on this device. For phrases with two gender
+            forms, the Yalla sample uses the first form in the guide.
+          </small>
+          {previewMessage && <p role="status">{previewMessage}</p>}
+        </div>
         <button className="primary" type="submit" disabled={!account.canEdit}>
           Save changes
           <Check size={17} />

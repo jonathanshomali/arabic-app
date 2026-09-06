@@ -1,0 +1,407 @@
+[
+  {
+    "ar": "مرحبا",
+    "latin": "marhaba",
+    "en": "Hello"
+  },
+  {
+    "ar": "أهلين",
+    "latin": "ahleen",
+    "en": "Hi there"
+  },
+  {
+    "ar": "شكراً",
+    "latin": "shukran",
+    "en": "Thank you"
+  },
+  {
+    "ar": "يلا",
+    "latin": "yalla",
+    "en": "Let’s go"
+  },
+  {
+    "ar": "مع السلامة",
+    "latin": "ma‘ is-salaameh",
+    "en": "Goodbye"
+  },
+  {
+    "ar": "كيفك؟",
+    "latin": "keefak? / keefik?",
+    "en": "How are you?"
+  },
+  {
+    "ar": "منيح",
+    "latin": "mneeh",
+    "en": "Good"
+  },
+  {
+    "ar": "الحمد لله",
+    "latin": "il-hamdillah",
+    "en": "Thank God"
+  },
+  {
+    "ar": "وإنت؟",
+    "latin": "w inta? / w inti?",
+    "en": "And you?"
+  },
+  {
+    "ar": "تمام",
+    "latin": "tamaam",
+    "en": "All good"
+  },
+  {
+    "ar": "شو اسمك؟",
+    "latin": "shu ismak? / shu ismik?",
+    "en": "What’s your name?"
+  },
+  {
+    "ar": "اسمي",
+    "latin": "ismi",
+    "en": "My name is"
+  },
+  {
+    "ar": "أنا من فلسطين",
+    "latin": "ana min falasteen",
+    "en": "I’m from Palestine"
+  },
+  {
+    "ar": "أهلاً وسهلاً",
+    "latin": "ahlan w sahlan",
+    "en": "Welcome"
+  },
+  {
+    "ar": "تشرفنا",
+    "latin": "tsharrafna",
+    "en": "Nice to meet you"
+  },
+  {
+    "ar": "آه",
+    "latin": "aah",
+    "en": "Yes"
+  },
+  {
+    "ar": "لا",
+    "latin": "laa",
+    "en": "No"
+  },
+  {
+    "ar": "لو سمحت",
+    "latin": "law samaht / law samahti",
+    "en": "Please / excuse me"
+  },
+  {
+    "ar": "بدي",
+    "latin": "biddi",
+    "en": "I want"
+  },
+  {
+    "ar": "ما بعرف",
+    "latin": "ma ba‘raf",
+    "en": "I don’t know"
+  },
+  {
+    "ar": "قهوة",
+    "latin": "ahweh",
+    "en": "Coffee"
+  },
+  {
+    "ar": "شاي",
+    "latin": "shaay",
+    "en": "Tea"
+  },
+  {
+    "ar": "مي",
+    "latin": "mayy",
+    "en": "Water"
+  },
+  {
+    "ar": "بدون سكر",
+    "latin": "bidoon sukkar",
+    "en": "Without sugar"
+  },
+  {
+    "ar": "الحساب لو سمحت",
+    "latin": "il-hsaab law samaht",
+    "en": "The bill, please"
+  },
+  {
+    "ar": "خبز",
+    "latin": "khubiz",
+    "en": "Bread"
+  },
+  {
+    "ar": "زيت زيتون",
+    "latin": "zeit zaytoon",
+    "en": "Olive oil"
+  },
+  {
+    "ar": "زعتر",
+    "latin": "za‘tar",
+    "en": "Za’atar"
+  },
+  {
+    "ar": "زاكي",
+    "latin": "zaaki",
+    "en": "Delicious"
+  },
+  {
+    "ar": "صحتين",
+    "latin": "sahtein",
+    "en": "Enjoy your meal"
+  },
+  {
+    "ar": "وين؟",
+    "latin": "wein?",
+    "en": "Where?"
+  },
+  {
+    "ar": "هون",
+    "latin": "hoon",
+    "en": "Here"
+  },
+  {
+    "ar": "هناك",
+    "latin": "hunaak",
+    "en": "There"
+  },
+  {
+    "ar": "يمين",
+    "latin": "yameen",
+    "en": "Right"
+  },
+  {
+    "ar": "شمال",
+    "latin": "shmaal",
+    "en": "Left"
+  },
+  {
+    "ar": "بدي قهوة",
+    "latin": "biddi ahweh",
+    "en": "I want a coffee"
+  },
+  {
+    "ar": "وين القهوة؟",
+    "latin": "wein il-ahweh?",
+    "en": "Where is the coffee?"
+  },
+  {
+    "ar": "شو بدك؟",
+    "latin": "shu biddak? / shu biddik?",
+    "en": "What do you want?"
+  },
+  {
+    "ar": "يلا نروح",
+    "latin": "yalla nrooh",
+    "en": "Let’s leave"
+  },
+  {
+    "ar": "بشوفك بكرا",
+    "latin": "bshoofak bukra / bshoofik bukra",
+    "en": "See you tomorrow"
+  },
+  {
+    "ar": "أمي",
+    "latin": "immi",
+    "en": "My mother"
+  },
+  {
+    "ar": "أبوي",
+    "latin": "abooy",
+    "en": "My father"
+  },
+  {
+    "ar": "أخوي",
+    "latin": "akhooy",
+    "en": "My brother"
+  },
+  {
+    "ar": "أختي",
+    "latin": "ukhti",
+    "en": "My sister"
+  },
+  {
+    "ar": "صاحبي",
+    "latin": "saahbi",
+    "en": "My friend"
+  },
+  {
+    "ar": "واحد",
+    "latin": "waahad",
+    "en": "One"
+  },
+  {
+    "ar": "تنين",
+    "latin": "tnein",
+    "en": "Two"
+  },
+  {
+    "ar": "تلاتة",
+    "latin": "tlaateh",
+    "en": "Three"
+  },
+  {
+    "ar": "أربعة",
+    "latin": "arba‘a",
+    "en": "Four"
+  },
+  {
+    "ar": "خمسة",
+    "latin": "khamseh",
+    "en": "Five"
+  },
+  {
+    "ar": "قديش؟",
+    "latin": "addeish?",
+    "en": "How much?"
+  },
+  {
+    "ar": "قديش هادا؟",
+    "latin": "addeish haada?",
+    "en": "How much is this?"
+  },
+  {
+    "ar": "غالي",
+    "latin": "ghaali",
+    "en": "Expensive"
+  },
+  {
+    "ar": "رخيص",
+    "latin": "rkhees",
+    "en": "Inexpensive"
+  },
+  {
+    "ar": "بدي هادا",
+    "latin": "biddi haada",
+    "en": "I want this one"
+  },
+  {
+    "ar": "اليوم",
+    "latin": "il-yoom",
+    "en": "Today"
+  },
+  {
+    "ar": "بكرا",
+    "latin": "bukra",
+    "en": "Tomorrow"
+  },
+  {
+    "ar": "مبارح",
+    "latin": "mbaareh",
+    "en": "Yesterday"
+  },
+  {
+    "ar": "هلأ",
+    "latin": "halla’",
+    "en": "Now"
+  },
+  {
+    "ar": "بعدين",
+    "latin": "ba‘dein",
+    "en": "Later"
+  },
+  {
+    "ar": "مبسوط",
+    "latin": "mabsoot",
+    "en": "Happy"
+  },
+  {
+    "ar": "تعبان",
+    "latin": "ta‘baan",
+    "en": "Tired"
+  },
+  {
+    "ar": "جوعان",
+    "latin": "joo‘aan",
+    "en": "Hungry"
+  },
+  {
+    "ar": "عطشان",
+    "latin": "‘atshaan",
+    "en": "Thirsty"
+  },
+  {
+    "ar": "مشغول",
+    "latin": "mashghool",
+    "en": "Busy"
+  },
+  {
+    "ar": "شو رأيك؟",
+    "latin": "shu ra’yak? / shu ra’yik?",
+    "en": "What do you think?"
+  },
+  {
+    "ar": "نروح؟",
+    "latin": "nrooh?",
+    "en": "Shall we go?"
+  },
+  {
+    "ar": "عالبيت",
+    "latin": "‘al-beit",
+    "en": "To the house"
+  },
+  {
+    "ar": "عالسوق",
+    "latin": "‘as-soo’",
+    "en": "To the market"
+  },
+  {
+    "ar": "مع بعض",
+    "latin": "ma‘ ba‘d",
+    "en": "Together"
+  },
+  {
+    "ar": "مش فاهم",
+    "latin": "mish faahem",
+    "en": "I don’t understand"
+  },
+  {
+    "ar": "كمان مرة",
+    "latin": "kamaan marra",
+    "en": "One more time"
+  },
+  {
+    "ar": "شوي شوي",
+    "latin": "shway shway",
+    "en": "Little by little / slowly"
+  },
+  {
+    "ar": "شو يعني؟",
+    "latin": "shu ya‘ni?",
+    "en": "What does it mean?"
+  },
+  {
+    "ar": "بحكي عربي شوي",
+    "latin": "bahki ‘arabi shway",
+    "en": "I speak a little Arabic"
+  },
+  {
+    "ar": "تفضل",
+    "latin": "tfaddal",
+    "en": "Please, go ahead"
+  },
+  {
+    "ar": "نورت",
+    "latin": "nawwart",
+    "en": "You’ve brightened the place"
+  },
+  {
+    "ar": "يسلموا",
+    "latin": "yislamu",
+    "en": "Thanks a lot"
+  },
+  {
+    "ar": "الله يعطيك العافية",
+    "latin": "alla ya‘teek il-‘aafyeh",
+    "en": "May God give you well-being"
+  },
+  {
+    "ar": "الله معك",
+    "latin": "alla ma‘ak / alla ma‘ik",
+    "en": "God be with you"
+  },
+  {
+    "ar": "حبيبي",
+    "latin": "habibi",
+    "en": "My dear"
+  }
+]

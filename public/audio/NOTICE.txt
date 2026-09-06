@@ -1,0 +1,14 @@
+Yalla experimental Palestinian audio pack
+
+Generated with hamdallah/Sofelia-TTS-82M, voice Eliaa:
+https://huggingface.co/hamdallah/Sofelia-TTS-82M
+Revision: e1b729a4641311df2d78a22d81c42c10bfda64db
+
+Underlying model: hexgrad/Kokoro-82M
+https://huggingface.co/hexgrad/Kokoro-82M
+Sofelia model card credit: Dialect voice data: Sofelia Palestinian TTS.
+The model cards declare Apache License 2.0; a copy accompanies this notice.
+
+Yalla additions: explicit per-phrase pronunciation inputs, generation tooling,
+and web playback integration. Model weights have not been modified or bundled.
+Audio is AI-generated and has not yet received native-speaker review.

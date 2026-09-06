@@ -11,7 +11,9 @@
     "format": "prettier --write src tests *.ts *.json index.html",
     "build:pages": "tsc -b && vite build --mode github-pages",
     "test:accounts": "playwright test --config playwright.accounts.config.ts",
-    "test:security": "node --test security-tests/*.test.mjs"
+    "test:security": "node --test security-tests/*.test.mjs",
+    "voice:export": "node scripts/voice/export-phrases.mjs",
+    "voice:check": "node scripts/voice/check.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.115.0",

@@ -33,7 +33,7 @@ Before the first browser test run, install Chromium with `npx playwright install
 - Profile name, audio preference, daily goal settings, and confirmed progress reset.
 - Responsive mobile navigation, keyboard focus management, and reduced-motion support.
 
-Email/password accounts save names, XP, and learning progress in Supabase. Guest progress remains in this browser; signed-in learners can explicitly import it from Settings. Passwords are sent over HTTPS and hashed by Supabase Auth. See [account setup and security](docs/accounts.md). System Arabic speech synthesis is optional and depends on installed voices; these may pronounce standard Arabic rather than Palestinian dialect. Written pronunciation guides remain available.
+Email/password accounts save names, XP, and learning progress in Supabase. Guest progress remains in this browser; signed-in learners can explicitly import it from Settings. Passwords are sent over HTTPS and hashed by Supabase Auth. See [account setup and security](docs/accounts.md). Settings includes an experimental Palestinian AI voice covering all 80 phrases, with samples and replayable audio hosted on GitHub Pages. It uses Sofelia’s Eliaa voice with Yalla pronunciation inputs and still needs native-speaker review. Device Arabic voices remain available. See [voice generation and review](docs/voice.md).
 
 ## Project structure
 
@@ -41,7 +41,7 @@ Email/password accounts save names, XP, and learning progress in Supabase. Guest
 - `src/data.ts`: starter lesson content and progress helpers.
 - `src/moreLessons.ts`: additional lessons and unit metadata.
 - `src/phraseTips.ts`: individual tips for the original phrases.
-- `src/usePronunciation.ts`: replayable speech synthesis, asynchronous voice loading, and playback cleanup.
+- `src/usePronunciation.ts`: generated audio playback, cancellation, and fallback to `src/useSystemPronunciation.ts`.
 - `src/Mascot.tsx`: original SVG mascot and landscape artwork.
 - `src/styles.css`: responsive visual design.
 - `tests/app.spec.ts`: end-to-end browser coverage.
