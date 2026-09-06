@@ -100,7 +100,7 @@ async function prepare(
           user_id: uid,
           phrase_ar: body.p_phrase_ar,
           seconds: body.p_seconds,
-          object_path: `${uid}/${body.p_id}.webm`,
+          object_path: `${uid}/${body.p_id}.${body.p_mime_type === "audio/wav" ? "wav" : "webm"}`,
           created_at: new Date().toISOString(),
           upload_complete: false,
           review_status: "pending",
@@ -202,6 +202,24 @@ test("native pilot records actual media, automatically contributes, and releases
     )
     .toBeGreaterThanOrEqual(2);
   await page.screenshot({ path: "test-results/recording-mobile.png" });
+  const signal = await page
+    .locator("audio")
+    .evaluate(async (a: HTMLAudioElement) => {
+      const context = new AudioContext();
+      try {
+        const buffer = await context.decodeAudioData(
+          await (await fetch(a.src)).arrayBuffer(),
+        );
+        const samples = buffer.getChannelData(0);
+        return Math.sqrt(
+          samples.reduce((sum, value) => sum + value * value, 0) /
+            samples.length,
+        );
+      } finally {
+        await context.close();
+      }
+    });
+  expect(signal).toBeGreaterThan(0.001);
 });
 
 test("failed upload retries the same contribution and can be deleted in Settings", async ({
@@ -354,9 +372,19 @@ test("recording stops automatically at the twenty-second limit", async ({
     page.getByRole("button", { name: /Stop recording/ }),
   ).toBeVisible();
   await page.waitForTimeout(650);
-  await page.clock.fastForward(21000);
+  await page.clock.fastForward(19000);
+  await expect(
+    page.getByRole("button", { name: /Stop recording/ }),
+  ).toBeVisible();
+  expect(backend.uploads).toBe(0);
+  await page.clock.fastForward(1100);
   await expect(page.getByText(/Contributed! Your take/)).toBeVisible();
-  expect(backend.reservations[0].p_seconds).toBe(20);
+  // The JS clock advances, but the test microphone records in real time.
+  // Metadata must use the decoded duration, not the accelerated timer.
+  const duration = await page
+    .locator("audio")
+    .evaluate((a: HTMLAudioElement) => a.duration);
+  expect(backend.reservations[0].p_seconds).toBeCloseTo(duration, 2);
   await expect
     .poll(() =>
       page.evaluate(() =>
@@ -366,4 +394,144 @@ test("recording stops automatically at the twenty-second limit", async ({
       ),
     )
     .toBe(true);
+});
+
+async function signalMicrophone(page: Page, volume: number) {
+  await page.evaluate((volume) => {
+    navigator.mediaDevices.getUserMedia = async () => {
+      const context = new AudioContext();
+      await context.resume();
+      const oscillator = context.createOscillator();
+      oscillator.frequency.value = 440;
+      const gain = context.createGain();
+      gain.gain.value = volume;
+      const output = context.createMediaStreamDestination();
+      oscillator.connect(gain).connect(output);
+      oscillator.start();
+      for (const track of output.stream.getTracks()) {
+        const stop = track.stop.bind(track);
+        track.stop = () => {
+          stop();
+          oscillator.stop();
+          void context.close();
+        };
+      }
+      return output.stream;
+    };
+  }, volume);
+}
+
+test("silent input shows a flat meter and is never uploaded as a successful take", async ({
+  page,
+  context,
+}) => {
+  const backend = await prepare(context);
+  await openPhrase(page);
+  await signalMicrophone(page, 0);
+  await page
+    .getByRole("button", { name: "Record & contribute", exact: true })
+    .click();
+  await expect(
+    page.getByRole("meter", { name: "Microphone input level" }),
+  ).toHaveAttribute("value", "0");
+  await page.waitForTimeout(650);
+  await page.getByRole("button", { name: /Stop recording/ }).click();
+  await expect(page.getByRole("alert")).toContainText(
+    "We couldn’t hear sound from your microphone",
+  );
+  expect(backend.uploads).toBe(0);
+  expect(backend.reservations).toHaveLength(0);
+  await expect(page.locator("audio")).toHaveCount(0);
+});
+
+test("quiet input produces an audible WAV through the actual playback element", async ({
+  page,
+  context,
+}) => {
+  const backend = await prepare(context);
+  await openPhrase(page);
+  await signalMicrophone(page, 0.01);
+  await page
+    .getByRole("button", { name: "Record & contribute", exact: true })
+    .click();
+  await expect
+    .poll(() => page.getByRole("meter").getAttribute("value"))
+    .not.toBe("0");
+  await page.waitForTimeout(650);
+  await page.getByRole("button", { name: /Stop recording/ }).click();
+  await expect(page.getByText(/Contributed! Your take/)).toBeVisible();
+  expect(backend.reservations[0].p_mime_type).toBe("audio/wav");
+  const output = await page
+    .locator("audio")
+    .evaluate(async (audio: HTMLAudioElement) => {
+      const context = new AudioContext();
+      try {
+        await context.resume();
+        const analyser = context.createAnalyser();
+        context
+          .createMediaElementSource(audio)
+          .connect(analyser)
+          .connect(context.destination);
+        await audio.play();
+        await new Promise((resolve) => setTimeout(resolve, 200));
+        const samples = new Float32Array(analyser.fftSize);
+        analyser.getFloatTimeDomainData(samples);
+        return {
+          rms: Math.sqrt(
+            samples.reduce((sum, value) => sum + value * value, 0) /
+              samples.length,
+          ),
+          time: audio.currentTime,
+          muted: audio.muted,
+        };
+      } finally {
+        await context.close();
+      }
+    });
+  expect(output.rms).toBeGreaterThan(0.03);
+  expect(output.time).toBeGreaterThan(0);
+  expect(output.muted).toBe(false);
+});
+
+test("a different microphone can be selected for the next take", async ({
+  page,
+  context,
+}) => {
+  const backend = await prepare(context);
+  await openPhrase(page);
+  await recordTake(page);
+  await expect(page.getByText(/Contributed! Your take/)).toBeVisible();
+  const microphone = page.getByRole("combobox", {
+    name: "Microphone",
+    exact: true,
+  });
+  const selectedId = await microphone
+    .locator("option")
+    .last()
+    .getAttribute("value");
+  expect(selectedId).toBeTruthy();
+  await microphone.selectOption(selectedId!);
+  await page.evaluate(() => {
+    const getMic = navigator.mediaDevices.getUserMedia.bind(
+      navigator.mediaDevices,
+    );
+    navigator.mediaDevices.getUserMedia = async (constraints) => {
+      (window as any).selectedConstraints = constraints;
+      return getMic(constraints);
+    };
+  });
+  await page.getByRole("button", { name: "Record another take" }).click();
+  await expect(
+    page.getByRole("button", { name: /Stop recording/ }),
+  ).toBeVisible();
+  const constraints = await page.evaluate(
+    () => (window as any).selectedConstraints,
+  );
+  expect(constraints.audio.deviceId.exact).toBe(selectedId);
+  expect(constraints.audio.echoCancellation).toBe(false);
+  expect(constraints.audio.noiseSuppression).toBe(false);
+  await page.waitForTimeout(650);
+  await page.getByRole("button", { name: /Stop recording/ }).click();
+  await expect(page.getByText(/Contributed! Your take/)).toBeVisible();
+  expect(backend.uploads).toBe(2);
 });

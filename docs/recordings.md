@@ -36,9 +36,23 @@ approve samples, edit metadata, or read another participant’s audio. Limit: 2 
 per file, 100 reservations in a rolling day, 200 retained submissions per user.
 Incomplete reservations are visible in Settings and can be deleted there.
 
-Files use the browser’s supported audio format (usually Opus/WebM or AAC/MP4).
-Actual duration, format, audio quality, accent, and transcription need review;
-client-supplied metadata is not proof of these properties.
+The recorder shows the active microphone and a live input meter. After permission
+is granted, participants can select another microphone for their next take. If
+the meter stays flat while speaking, check the selected input and its mute/input
+volume in the browser and operating system settings.
+
+Capture uses the browser's encoder, waits for its final data before releasing the
+microphone, then decodes the complete recording locally. Silent/near-silent or
+unreadable takes are rejected before any upload. Accepted takes become mono
+24 kHz PCM WAV files for playback and upload, using the strongest input channel,
+removing DC offset, and applying at most a 12x gain with a 0.8 peak target. Browser
+echo cancellation, noise suppression, and automatic gain are disabled for capture.
+Duration metadata comes from the decoded audio. Older recordings retain their
+original browser formats; the change cannot recover speech from a silent file.
+
+The signal check detects silence, not speech or correct pronunciation. Actual
+audio quality, accent, and transcription still need review; client-supplied
+metadata is not proof of these properties.
 
 ## Review and use for model improvement
 
@@ -87,7 +101,9 @@ visible to anyone who opens recording.
 
 - `npm run test:accounts`: actual browser MediaRecorder capture with a fake test microphone,
   automatic submissions through mocked APIs, retry identity, deletion, denied access,
-  and capture cleanup. No test microphone audio is sent to the live project.
+  and capture cleanup. Additional controlled silent/quiet inputs verify silence
+  rejection, microphone selection, and measurable sound through the actual
+  playback element. No test microphone audio is sent to the live project.
 - `npm run test:security`: PostgreSQL access, upload reservations, review,
   and cross-account isolation using PGlite with a minimal Storage schema.
 - `python3 -m unittest discover -s scripts/voice -p 'test_contribution_export.py'`:

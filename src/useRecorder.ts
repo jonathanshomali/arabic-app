@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { prepareRecording } from "./recordingAudio";
 
 export type RecordedTake = {
   blob: Blob;
@@ -16,6 +17,12 @@ export function useRecorder(beforeRecord: () => void) {
   const [take, setTake] = useState<RecordedTake | null>(null);
   const [seconds, setSeconds] = useState(0);
   const [error, setError] = useState("");
+  const [level, setLevel] = useState(0);
+  const [devices, setDevices] = useState<MediaDeviceInfo[]>([]);
+  const [deviceId, setDeviceId] = useState("");
+  const [micName, setMicName] = useState("");
+  const monitor = useRef<AudioContext | null>(null);
+  const analyser = useRef<AnalyserNode | null>(null);
   const generation = useRef(0);
   const stream = useRef<MediaStream | null>(null);
   const recorder = useRef<MediaRecorder | null>(null);
@@ -32,6 +39,9 @@ export function useRecorder(beforeRecord: () => void) {
     stream.current = null;
     if (clock.current) clearInterval(clock.current);
     clock.current = null;
+    analyser.current = null;
+    if (monitor.current) void monitor.current.close().catch(() => {});
+    monitor.current = null;
   }, []);
   const cancelWork = useCallback(() => {
     generation.current++;
@@ -59,6 +69,7 @@ export function useRecorder(beforeRecord: () => void) {
     setPhase("idle");
     setSeconds(0);
     setError("");
+    setLevel(0);
   }, [cancelWork]);
   useEffect(
     () => () => {
@@ -79,9 +90,10 @@ export function useRecorder(beforeRecord: () => void) {
       setPhase("idle");
       setError("The recording couldn’t stop cleanly. Please try again.");
       return;
-    } finally {
-      releaseMic();
     }
+    // Let MediaRecorder flush its final audio before releasing input tracks.
+    if (clock.current) clearInterval(clock.current);
+    clock.current = null;
     // Some engines can fail to emit the final data event after device removal.
     finishTimer.current = setTimeout(() => {
       cancelWork();
@@ -114,8 +126,18 @@ export function useRecorder(beforeRecord: () => void) {
     setPhase("requesting");
     const request = generation.current;
     try {
+      // Resume inside the recording tap, before awaiting microphone permission.
+      const context = new AudioContext();
+      monitor.current = context;
+      void context.resume().catch(() => {});
       const mic = await navigator.mediaDevices.getUserMedia({
-        audio: { echoCancellation: true, noiseSuppression: true },
+        audio: {
+          ...(deviceId ? { deviceId: { exact: deviceId } } : {}),
+          channelCount: { ideal: 1 },
+          echoCancellation: false,
+          noiseSuppression: false,
+          autoGainControl: false,
+        },
         video: false,
       });
       if (request !== generation.current) {
@@ -123,6 +145,20 @@ export function useRecorder(beforeRecord: () => void) {
         return;
       }
       stream.current = mic;
+      setMicName(mic.getAudioTracks()[0]?.label || "Selected microphone");
+      void navigator.mediaDevices
+        .enumerateDevices()
+        .then((items) => {
+          if (request === generation.current)
+            setDevices(items.filter((item) => item.kind === "audioinput"));
+        })
+        .catch(() => {});
+      const meter = context.createAnalyser();
+      meter.fftSize = 2048;
+      context.createMediaStreamSource(mic).connect(meter);
+      // No connection to speakers: the meter must never echo the microphone.
+      analyser.current = meter;
+      const meterSamples = new Float32Array(meter.fftSize);
       const mimeType = [
         "audio/webm;codecs=opus",
         "audio/mp4",
@@ -153,18 +189,20 @@ export function useRecorder(beforeRecord: () => void) {
         setPhase("idle");
         setError("The microphone stopped working. Please try recording again.");
       };
-      current.onstop = () => {
+      current.onstop = async () => {
         if (request !== generation.current) return;
         if (finishTimer.current) clearTimeout(finishTimer.current);
         finishTimer.current = null;
         releaseMic();
         recorder.current = null;
-        setPhase("idle");
+        setLevel(0);
+        setPhase("finishing");
         const duration = Math.min(
           MAX_RECORDING_SECONDS,
           (performance.now() - started.current) / 1000,
         );
         if (tooLarge || !bytes || duration < 0.4) {
+          setPhase("idle");
           setError(
             tooLarge
               ? "This recording is too large. Try a shorter take."
@@ -177,19 +215,48 @@ export function useRecorder(beforeRecord: () => void) {
           chunks[0]?.type ||
           "audio/webm"
         ).split(";")[0];
-        const blob = new Blob(chunks, { type: current.mimeType || mime });
-        const url = URL.createObjectURL(blob);
-        objectUrl.current = url;
-        setTake({ blob, url, seconds: duration, mime });
+        finishTimer.current = setTimeout(() => {
+          cancelWork();
+          setPhase("idle");
+          setError("The recording couldn’t be checked. Please try again.");
+        }, 10000);
+        try {
+          const prepared = await prepareRecording(
+            new Blob(chunks, { type: current.mimeType || mime }),
+          );
+          if (request !== generation.current) return;
+          const url = URL.createObjectURL(prepared.blob);
+          objectUrl.current = url;
+          setTake({ ...prepared, url });
+        } catch (cause) {
+          if (request !== generation.current) return;
+          setError(
+            cause instanceof Error
+              ? cause.message
+              : "The recording couldn’t be checked. Please try again.",
+          );
+        } finally {
+          if (request === generation.current) {
+            if (finishTimer.current) clearTimeout(finishTimer.current);
+            finishTimer.current = null;
+            setPhase("idle");
+          }
+        }
       };
       started.current = performance.now();
       current.start(250);
       setPhase("recording");
       clock.current = setInterval(() => {
+        analyser.current?.getFloatTimeDomainData(meterSamples);
+        const rms = Math.sqrt(
+          meterSamples.reduce((sum, value) => sum + value * value, 0) /
+            meterSamples.length,
+        );
+        setLevel(Math.min(1, rms * 8));
         const elapsed = (performance.now() - started.current) / 1000;
         setSeconds(Math.min(MAX_RECORDING_SECONDS, Math.floor(elapsed)));
         if (elapsed >= MAX_RECORDING_SECONDS) stop();
-      }, 200);
+      }, 100);
     } catch (cause) {
       if (request !== generation.current) return;
       cancelWork();
@@ -200,6 +267,20 @@ export function useRecorder(beforeRecord: () => void) {
           : "We couldn’t open your microphone. Check that it’s connected and not in use, then try again.",
       );
     }
-  }, [clear, supported, beforeRecord, stop, cancelWork, releaseMic]);
-  return { phase, take, seconds, error, supported, start, stop, clear };
+  }, [clear, supported, beforeRecord, stop, cancelWork, releaseMic, deviceId]);
+  return {
+    phase,
+    take,
+    seconds,
+    error,
+    supported,
+    start,
+    stop,
+    clear,
+    level,
+    devices,
+    deviceId,
+    setDeviceId,
+    micName,
+  };
 }

@@ -1469,6 +1469,32 @@ footer [lang="ar"] {
   background: #f5f7ec;
   text-align: left;
 }
+.microphone-select {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+  font-size: 12px;
+}
+.microphone-select select {
+  width: 100%;
+  min-width: 0;
+  padding: 9px;
+  border: 1px solid #d6dfc7;
+  border-radius: 7px;
+  color: #425d36;
+  background: #fffefa;
+  font: inherit;
+}
+.microphone-level {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+  overflow-wrap: anywhere;
+}
+.microphone-level meter {
+  width: 100%;
+  height: 15px;
+}
 .recorder-heading {
   display: flex;
   align-items: center;

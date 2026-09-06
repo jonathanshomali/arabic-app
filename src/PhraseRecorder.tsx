@@ -31,6 +31,7 @@ export function PhraseRecorder({
     "idle",
   );
   const [message, setMessage] = useState("");
+  const [playbackError, setPlaybackError] = useState("");
   const [contribute, setContribute] = useState(CONTRIBUTION_MODE === "pilot");
   const attempt = useRef<{ blob: Blob; id: string } | null>(null);
   const mounted = useRef(true);
@@ -99,6 +100,7 @@ export function PhraseRecorder({
     audio.current?.pause();
     setUpload("idle");
     setMessage("");
+    setPlaybackError("");
     void recording.start();
   }
   const mime = recording.take?.mime;
@@ -180,6 +182,41 @@ export function PhraseRecorder({
           )}
         </div>
       )}
+      {recording.devices.length > 0 && (
+        <label className="microphone-select">
+          Microphone
+          <select
+            value={recording.deviceId}
+            disabled={busy}
+            onChange={(event) => recording.setDeviceId(event.target.value)}
+          >
+            <option value="">System default</option>
+            {recording.devices
+              .filter((device) => device.deviceId)
+              .map((device) => (
+                <option key={device.deviceId} value={device.deviceId}>
+                  {device.label || "Microphone"}
+                </option>
+              ))}
+          </select>
+        </label>
+      )}
+      {recording.phase === "recording" && (
+        <div className="microphone-level">
+          <small>Using {recording.micName}</small>
+          <meter
+            aria-label="Microphone input level"
+            min={0}
+            max={1}
+            value={recording.level}
+          />
+          <small>
+            {recording.level > 0.008
+              ? "Sound detected. Say the phrase clearly."
+              : "No sound detected right now. Speak and watch the level move."}
+          </small>
+        </div>
+      )}
       {recording.take && (
         <div className="recorded-take">
           <audio
@@ -188,7 +225,13 @@ export function PhraseRecorder({
             src={recording.take.url}
             aria-label={`Your recording of ${phrase.en}`}
             onPlay={stopAudio}
+            onError={() =>
+              setPlaybackError(
+                "Playback couldn’t load. Try saving a copy to listen, or record another take.",
+              )
+            }
           />
+          {playbackError && <p role="alert">{playbackError}</p>}
           <a
             href={recording.take.url}
             download={`yalla-lesson-${lessonId + 1}.${extension}`}
