@@ -6,8 +6,8 @@
   "clips": [
     {
       "phrase": "مرحبا",
-      "file": "audio/yalla-v1/b6cd77dda060b2c3.wav",
-      "sha256": "b316920a161be6835ccea33861be4ebf3cb5b16d52547b30ddd075e87befc411",
+      "file": "audio/yalla-v1/e37bc37ba1f7ef1e.wav",
+      "sha256": "618e4698d1ba94fa247f57c4cac4976a2682c9c27f0f1766934ff1b629df6d82",
       "transcript": "مرحبا"
     },
     {
@@ -36,9 +36,9 @@
     },
     {
       "phrase": "كيفك؟",
-      "file": "audio/yalla-v1/4d223e4bdb917084.wav",
-      "sha256": "93dddbc39ff98ce6dd2fb8f04d10bc715ce8a0d9a4543be091931e42820c7eeb",
-      "transcript": "كيفق"
+      "file": "audio/yalla-v1/ab5aa1dab0ae50d1.wav",
+      "sha256": "c085bc9c8c9548b3525bb3c1b0dedd714aa70502f4e96986e2665f7e11ed31c4",
+      "transcript": "كيفاك"
     },
     {
       "phrase": "منيح",

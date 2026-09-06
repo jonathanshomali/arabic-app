@@ -31,12 +31,21 @@ REMAP = str.maketrans({"ħ": "ʰ", "ʕ": "ʁ", "ˤ": "ᵊ"})
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--model-dir", type=Path, help="Use already downloaded pinned model files")
+    parser.add_argument("--phrase", action="append", help="Regenerate only this Arabic phrase; repeat for multiple corrections")
     args = parser.parse_args()
 
     phrases = json.loads((HERE / "phrases.json").read_text())
     pronunciations = json.loads((HERE / "pronunciations.json").read_text())
+    settings = json.loads((HERE / "synthesis-settings.json").read_text())
     if set(p["ar"] for p in phrases) != set(pronunciations):
         raise ValueError("Curriculum and pronunciation coverage differ. Run voice:export and update pronunciations.json.")
+    selected = set(args.phrase or pronunciations)
+    if not selected <= set(pronunciations):
+        raise ValueError(f"Unknown phrases: {selected - set(pronunciations)}")
+    if not set(settings) <= set(pronunciations):
+        raise ValueError("Synthesis settings contain unknown phrases")
+    previous_manifest = json.loads((ROOT / "src/audioManifest.json").read_text()) if args.phrase else None
+    previous_review = {row["ar"]: row for row in json.loads((HERE / "review.json").read_text())} if args.phrase else {}
 
     def model_file(name):
         if args.model_dir:
@@ -56,12 +65,22 @@ def main():
     clips = {}
     details = []
     for phrase in phrases:
+        if phrase["ar"] not in selected:
+            clips[phrase["ar"]] = previous_manifest["clips"][phrase["ar"]]
+            details.append(previous_review[phrase["ar"]])
+            continue
         ps = pronunciations[phrase["ar"]].translate(REMAP)
         unknown = set(ps) - set(model.vocab)
         if unknown or not 1 <= len(ps) <= 500:
             raise ValueError(f"Unsupported phonemes for {phrase['ar']}: {unknown}")
+        options = settings.get(phrase["ar"], {})
+        speed = options.get("speed", 0.9)
+        if not 0.5 <= speed <= 2:
+            raise ValueError(f"Invalid speed for {phrase['ar']}")
+        if "seed" in options:
+            torch.manual_seed(options["seed"])
         with torch.inference_mode():
-            samples = model(ps, voice[len(ps) - 1], 0.9).numpy().squeeze()
+            samples = model(ps, voice[len(ps) - 1], speed).numpy().squeeze()
         duration = len(samples) / RATE
         peak = float(np.abs(samples).max())
         rms = float(np.sqrt(np.mean(samples ** 2)))
@@ -80,7 +99,7 @@ def main():
         clips[phrase["ar"]] = f"audio/yalla-v1/{filename}"
         details.append({**phrase, "phonemes": pronunciations[phrase["ar"]],
                         "file": filename, "seconds": round(len(samples) / RATE, 3),
-                        "rms": round(rms, 5), "nativeReviewed": False})
+                        "rms": round(rms, 5), "nativeReviewed": False, **options})
         print(f"{len(details)}/{len(phrases)} {phrase['ar']} ({duration:.2f}s)", flush=True)
     manifest = {"model": MODEL_ID, "revision": REVISION, "voice": "Eliaa",
                 "status": "experimental", "sampleRate": RATE, "clips": clips}

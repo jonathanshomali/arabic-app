@@ -36,6 +36,34 @@ must match within a limited character error rate before deployment. Expected
 lesson text is never supplied as a hint to the recognizer. ASR is a regression
 check for intelligible speech, not a native-speaker endorsement.
 
+## Reference-based word corrections
+
+Marhaba and keefak now use revised model phonemes and a per-word speed of 0.7,
+based on the owner's supplied pronunciation examples. The deployed files remain
+synthetic Eliaa clips; the original recordings stay outside the repository.
+This changes pronunciation controls, not model weights or speaker identity.
+
+Local comparison used [XLSR phoneme recognition](https://huggingface.co/facebook/wav2vec2-xlsr-53-espeak-cv-ft)
+to compare candidate vowels/consonants and measured the active speech duration.
+The selected clips' active speech spans are approximately 0.78 seconds for
+marhaba and 0.56 seconds for keefak, versus 0.77 and 0.59 in the references.
+These exclude leading/trailing silence. The automatic comparison still detects
+differences in the pharyngeal consonant and final vowel; it does not establish an
+exact match or replace the owner's listening review. The model input symbols are
+synthesis controls, not a proposed change to the lesson's written transliteration.
+
+`synthesis-settings.json` preserves each correction's speed and random seed.
+To update selected clips while preserving every other file and its review record:
+
+```sh
+/tmp/yalla-voice-env/bin/python scripts/voice/generate.py --phrase 'مرحبا' --phrase 'كيفك؟'
+/tmp/yalla-review-env/bin/python scripts/voice/recognize.py --phrase 'مرحبا' --phrase 'كيفك؟'
+npm run voice:check
+```
+
+Selective recognition rejects stale results for any unselected clip. Generated
+replacements keep `nativeReviewed: false` until their pronunciation is approved.
+
 ## Static-noise fix
 
 The first pack contained noise because the installed Kokoro loader silently

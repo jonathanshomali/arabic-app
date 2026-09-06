@@ -3,11 +3,13 @@
     "ar": "مرحبا",
     "latin": "marhaba",
     "en": "Hello",
-    "phonemes": "mˈarħaba",
-    "file": "b6cd77dda060b2c3.wav",
-    "seconds": 1.995,
-    "rms": 0.0934,
-    "nativeReviewed": false
+    "phonemes": "mˈɑrħɑbɑ",
+    "file": "e37bc37ba1f7ef1e.wav",
+    "seconds": 2.52,
+    "rms": 0.08818,
+    "nativeReviewed": false,
+    "speed": 0.7,
+    "seed": 42
   },
   {
     "ar": "أهلين",
@@ -53,11 +55,13 @@
     "ar": "كيفك؟",
     "latin": "keefak? / keefik?",
     "en": "How are you?",
-    "phonemes": "kˈiːfak?",
-    "file": "4d223e4bdb917084.wav",
-    "seconds": 1.895,
-    "rms": 0.08463,
-    "nativeReviewed": false
+    "phonemes": "kˈiːfɒk?",
+    "file": "ab5aa1dab0ae50d1.wav",
+    "seconds": 2.47,
+    "rms": 0.08237,
+    "nativeReviewed": false,
+    "speed": 0.7,
+    "seed": 42
   },
   {
     "ar": "منيح",
