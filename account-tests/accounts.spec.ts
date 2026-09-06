@@ -63,6 +63,9 @@ function createBackend() {
     signupCount = 0;
   const writes: unknown[] = [];
   async function install(context: BrowserContext) {
+    await context.addInitScript(() =>
+      localStorage.setItem("yalla-welcome-seen-v1", "yes"),
+    );
     await context.route("https://yalla-test.supabase.co/**", async (route) => {
       const request = route.request(),
         url = new URL(request.url()),

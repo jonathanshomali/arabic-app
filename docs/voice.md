@@ -2,8 +2,11 @@
 
 Yalla now has a locally generated audio pack covering all 80 lesson phrases and
 the home-page word حبيبي. Select **Settings → Learning voice → Yalla Palestinian
-voice · experimental**, try the samples, and save. The device voice remains the
-default until the pack has been reviewed. This preference stays on the device;
+voice · experimental**, try the samples, and save. This is the default for
+visitors without an explicit saved voice choice; existing device-voice choices
+are respected. A first-visit modal introduces Zaytoun, explains the experimental
+voice, and offers a tap-to-play hello. Dismissal is remembered in this browser.
+This preference stays on the device;
 it does not change account progress or the database schema.
 
 This is an integration and pronunciation layer built on

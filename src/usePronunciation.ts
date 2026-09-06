@@ -6,9 +6,11 @@ import { useSystemPronunciation } from "./useSystemPronunciation";
 export type VoiceChoice = "system" | "yalla";
 export function loadVoiceChoice(): VoiceChoice {
   try {
-    return localStorage.getItem("yalla-voice") === "yalla" ? "yalla" : "system";
+    return localStorage.getItem("yalla-voice") === "system"
+      ? "system"
+      : "yalla";
   } catch {
-    return "system";
+    return "yalla";
   }
 }
 
@@ -17,7 +19,7 @@ const clips: Record<string, string> = manifest.clips;
 export function usePronunciation(
   enabled: boolean,
   notify: (message: string) => void,
-  voice: VoiceChoice = "system",
+  voice: VoiceChoice = "yalla",
 ) {
   const system = useSystemPronunciation(enabled, notify);
   const [clipSpeaking, setClipSpeaking] = useState<string | null>(null);

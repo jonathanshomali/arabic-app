@@ -1361,6 +1361,106 @@ footer [lang="ar"] {
   display: flex;
   padding: 5px;
 }
+.welcome-modal .modal-heading {
+  margin-bottom: 4px;
+}
+.welcome-content {
+  display: grid;
+  gap: 18px;
+}
+.welcome-mascot-scene {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 8px;
+  background: radial-gradient(ellipse at center, #eaf0d6 0%, transparent 68%);
+}
+.welcome-mascot {
+  width: 142px;
+  height: 148px;
+}
+.welcome-arabic {
+  position: absolute;
+  top: 18px;
+  left: calc(50% - 126px);
+  color: #527047;
+  font-family: "Noto Sans Arabic", sans-serif;
+  font-size: 25px;
+  line-height: 1.9;
+  transform: rotate(-9deg);
+}
+.welcome-voice-badge {
+  background: #ecf1dd;
+  color: #587342;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.welcome-speech {
+  position: relative;
+  padding: 20px 22px;
+  border: 1px solid #dce2cd;
+  border-radius: 18px;
+  background: #fffef9;
+}
+.welcome-speech::before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: -7px;
+  left: calc(50% - 6px);
+  border-left: 1px solid #dce2cd;
+  border-top: 1px solid #dce2cd;
+  background: #fffef9;
+  transform: rotate(45deg);
+}
+.welcome-speech .eyebrow {
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+.welcome-speech h3 {
+  margin: 8px 0;
+  font-size: 25px;
+  color: #365743;
+}
+.welcome-speech h4 {
+  margin: 16px 0 6px;
+  color: #627f40;
+  font-size: 16px;
+}
+.welcome-speech p {
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 8px 0 0;
+  color: #536153;
+}
+.welcome-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.welcome-actions button {
+  flex: 1 1 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.welcome-actions button[aria-pressed="true"] {
+  background: #e3f1dc;
+  border-color: #65964f;
+}
+.welcome-footnote,
+.welcome-message {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.6;
+  text-align: center;
+  color: #717b64;
+}
 .lesson-progress {
   display: flex;
   justify-content: space-between;

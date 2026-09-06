@@ -49,6 +49,7 @@ import {
   type VoiceChoice,
 } from "./usePronunciation";
 import { Modal } from "./Modal";
+import { WelcomeModal, needsWelcome, rememberWelcome } from "./WelcomeModal";
 import { AuthModal, type AuthMode } from "./AuthModal";
 import { useAccountProgress } from "./useAccountProgress";
 import { authConfigured } from "./supabase";
@@ -91,6 +92,7 @@ function App() {
   const [about, setAbout] = useState(false);
   const [toast, setToast] = useState("");
   const [voice, setVoice] = useState<VoiceChoice>(loadVoiceChoice);
+  const [welcome, setWelcome] = useState(needsWelcome);
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("All phrases");
   useEffect(() => {
@@ -112,7 +114,7 @@ function App() {
   } = usePronunciation(progress.sound, setToast, voice);
   useEffect(() => {
     stopAudio();
-  }, [page, session, settings, stopAudio]);
+  }, [page, session, settings, welcome, authMode, stopAudio]);
   function complete(lesson: Lesson, practice: boolean, score: number) {
     const xp = practice ? 10 : 30;
     setProgress((p) => ({
@@ -1037,6 +1039,21 @@ function App() {
           stopAudio={stopAudio}
         />
       )}
+      {welcome &&
+        !authMode &&
+        !account.recovery &&
+        !settings &&
+        !session &&
+        !about && (
+          <WelcomeModal
+            voice={voice}
+            sound={progress.sound}
+            onClose={() => {
+              rememberWelcome();
+              setWelcome(false);
+            }}
+          />
+        )}
       {settings && (
         <SettingsModal
           progress={progress}

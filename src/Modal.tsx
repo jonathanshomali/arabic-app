@@ -4,10 +4,14 @@ export function Modal({
   title,
   onClose,
   children,
+  className = "",
+  descriptionId,
 }: {
   title: string;
   onClose: () => void;
   children: React.ReactNode;
+  className?: string;
+  descriptionId?: string;
 }) {
   const ref = React.useRef<HTMLDivElement>(null);
   const onCloseRef = React.useRef(onClose);
@@ -55,10 +59,11 @@ export function Modal({
       <div
         ref={ref}
         tabIndex={-1}
-        className="modal"
+        className={`modal ${className}`.trim()}
         role="dialog"
         aria-modal="true"
         aria-label={title}
+        aria-describedby={descriptionId}
       >
         <div className="modal-heading">
           <h2>{title}</h2>

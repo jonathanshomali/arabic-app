@@ -33,7 +33,7 @@ Before the first browser test run, install Chromium with `npx playwright install
 - Profile name, audio preference, daily goal settings, and confirmed progress reset.
 - Responsive mobile navigation, keyboard focus management, and reduced-motion support.
 
-Email/password accounts save names, XP, and learning progress in Supabase. Guest progress remains in this browser; signed-in learners can explicitly import it from Settings. Passwords are sent over HTTPS and hashed by Supabase Auth. See [account setup and security](docs/accounts.md). Settings includes an experimental Palestinian AI voice covering all 80 phrases, with samples and replayable audio hosted on GitHub Pages. It uses Sofelia’s Eliaa voice with Yalla pronunciation inputs and still needs native-speaker review. Device Arabic voices remain available. See [voice generation and review](docs/voice.md).
+Email/password accounts save names, XP, and learning progress in Supabase. Guest progress remains in this browser; signed-in learners can explicitly import it from Settings. Passwords are sent over HTTPS and hashed by Supabase Auth. See [account setup and security](docs/accounts.md). New visitors meet Zaytoun in a first-visit welcome, and the experimental Palestinian AI voice is the default. Settings includes this voice covering all 80 phrases, with samples and replayable audio hosted on GitHub Pages. It uses Sofelia’s Eliaa voice with Yalla pronunciation inputs and still needs native-speaker review. Device Arabic voices remain available. See [voice generation and review](docs/voice.md).
 
 ## Project structure
 

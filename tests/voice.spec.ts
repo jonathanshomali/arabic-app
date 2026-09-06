@@ -1,5 +1,10 @@
 import { test, expect, type Page } from "@playwright/test";
 import { readFileSync } from "node:fs";
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() =>
+    localStorage.setItem("yalla-welcome-seen-v1", "yes"),
+  );
+});
 const manifest = JSON.parse(
   readFileSync(new URL("../src/audioManifest.json", import.meta.url), "utf8"),
 );
@@ -109,8 +114,7 @@ test("Settings previews work and the selected voice persists", async ({
 }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "Settings", exact: true }).click();
-  await expect(page.getByLabel("Learning voice")).toHaveValue("system");
-  await page.getByLabel("Learning voice").selectOption("yalla");
+  await expect(page.getByLabel("Learning voice")).toHaveValue("yalla");
   const preview = page.getByRole("button", {
     name: "Preview Hello",
     exact: true,
@@ -118,10 +122,11 @@ test("Settings previews work and the selected voice persists", async ({
   await preview.click();
   await expect(preview).toHaveAttribute("aria-pressed", "true");
   await expect(preview).toHaveAttribute("aria-pressed", "false");
+  await page.getByLabel("Learning voice").selectOption("system");
   await page.getByRole("button", { name: "Save changes" }).click();
   await page.reload();
   await page.getByRole("button", { name: "Settings", exact: true }).click();
-  await expect(page.getByLabel("Learning voice")).toHaveValue("yalla");
+  await expect(page.getByLabel("Learning voice")).toHaveValue("system");
   await page.getByLabel("Pronunciation audio").uncheck();
   await expect(preview).toBeDisabled();
 });

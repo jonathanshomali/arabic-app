@@ -1,5 +1,10 @@
 import { test, expect, type Page } from "@playwright/test";
 import { allPhrases, lessons } from "../src/data";
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() =>
+    localStorage.setItem("yalla-welcome-seen-v1", "yes"),
+  );
+});
 const answers = Object.fromEntries(allPhrases.map((p) => [p.ar, p.en]));
 async function takeQuiz(page: Page, correct = true) {
   for (let i = 0; i < 5; i++) {

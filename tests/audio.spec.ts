@@ -1,4 +1,10 @@
 import { test, expect, type Page } from "@playwright/test";
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem("yalla-welcome-seen-v1", "yes");
+    localStorage.setItem("yalla-voice", "system");
+  });
+});
 async function mockSpeech(
   page: Page,
   options: { delayed?: boolean; failFirst?: boolean } = {},
