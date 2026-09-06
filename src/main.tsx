@@ -44,6 +44,10 @@ import {
 } from "./data";
 import { laterUnits } from "./moreLessons";
 import { usePronunciation } from "./usePronunciation";
+import { Modal } from "./Modal";
+import { AuthModal, type AuthMode } from "./AuthModal";
+import { useAccountProgress } from "./useAccountProgress";
+import { authConfigured } from "./supabase";
 import "./styles.css";
 
 type Page = "Learn" | "Practice" | "Phrasebook" | "My progress";
@@ -65,7 +69,16 @@ const nav = [
 ];
 function App() {
   const [page, setPage] = useState<Page>("Learn");
-  const [progress, setProgress] = useState<Progress>(loadProgress);
+  const account = useAccountProgress();
+  const { progress, setProgress, storageError } = account;
+  const [authMode, setAuthMode] = useState<AuthMode | null>(null);
+  useEffect(() => {
+    if (account.recovery) setAuthMode("password");
+  }, [account.recovery]);
+  useEffect(() => {
+    setSession(null);
+    setSettings(false);
+  }, [account.user?.id]);
   const [session, setSession] = useState<{
     lesson: Lesson;
     practice: boolean;
@@ -75,15 +88,6 @@ function App() {
   const [toast, setToast] = useState("");
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("All phrases");
-  const [storageError, setStorageError] = useState(false);
-  useEffect(() => {
-    try {
-      localStorage.setItem("yalla-progress", JSON.stringify(progress));
-      setStorageError(false);
-    } catch {
-      setStorageError(true);
-    }
-  }, [progress]);
   useEffect(() => {
     if (toast) {
       const t = setTimeout(() => setToast(""), 4000);
@@ -129,6 +133,12 @@ function App() {
     }));
   }
   function start(lesson: Lesson, practice = false) {
+    if (!account.canEdit) {
+      setToast(
+        "Wait for your account to finish syncing before starting a lesson.",
+      );
+      return;
+    }
     setSession({
       lesson,
       practice: practice || progress.completed.includes(lesson.id),
@@ -226,6 +236,14 @@ function App() {
               <b>{progress.xp}</b>
               <span className="stat-label">XP</span>
             </span>
+            {authConfigured && !account.user && (
+              <button
+                className="signin-button"
+                onClick={() => setAuthMode("signin")}
+              >
+                Sign in
+              </button>
+            )}
             <button
               className="avatar"
               onClick={() => setSettings(true)}
@@ -235,7 +253,35 @@ function App() {
             </button>
           </div>
         </header>
-        <main>
+        {authConfigured && (
+          <div className={`account-status ${account.status}`}>
+            <span>
+              {!account.authReady
+                ? account.error || "Restoring your account…"
+                : account.user
+                  ? account.status === "saved"
+                    ? "Your progress is saved to your account"
+                    : account.status === "saving"
+                      ? "Saving your little wins…"
+                      : account.status === "loading"
+                        ? "Loading your saved progress…"
+                        : account.error
+                  : "Learning as a guest · Progress saved on this device"}
+            </span>
+            {account.user && ["error", "offline"].includes(account.status) && (
+              <button onClick={() => void account.retry()}>Retry sync</button>
+            )}
+            {account.status === "conflict" && (
+              <button onClick={() => setSettings(true)}>Resolve</button>
+            )}
+            {!account.user && account.authReady && (
+              <button onClick={() => setAuthMode("signup")}>
+                Save my progress
+              </button>
+            )}
+          </div>
+        )}
+        <main inert={!account.canEdit} aria-busy={!account.canEdit}>
           <div className="page-heading">
             <div>
               <div className="eyebrow">YOUR EVERYDAY ADVENTURE</div>
@@ -990,7 +1036,26 @@ function App() {
         <SettingsModal
           progress={progress}
           setProgress={setProgress}
+          account={account}
+          onOpenAuth={() => {
+            setSettings(false);
+            setAuthMode("signin");
+          }}
           onClose={() => setSettings(false)}
+        />
+      )}
+      {authMode && (
+        <AuthModal
+          key={authMode}
+          initialMode={authMode}
+          onClose={() => {
+            setAuthMode(null);
+            account.setRecovery(false);
+          }}
+          onComplete={() => {
+            setAuthMode(null);
+            account.setRecovery(false);
+          }}
         />
       )}
       {about && (
@@ -1008,7 +1073,8 @@ function App() {
             <p>
               Learn five phrases, then take a quiz. Score at least 80% to
               complete a lesson, earn 30 XP, and unlock the next one. Reviews
-              and practice earn 10 XP. Your progress is saved in this browser.
+              and practice earn 10 XP. Sign in to save your progress to your
+              account, or keep learning as a guest on this device.
             </p>
             <h3>Arabic, the way it’s spoken</h3>
             <p>
@@ -1064,77 +1130,6 @@ function App() {
 }
 function SproutIcon() {
   return <Leaf size={24} />;
-}
-function Modal({
-  title,
-  onClose,
-  children,
-}: {
-  title: string;
-  onClose: () => void;
-  children: React.ReactNode;
-}) {
-  const ref = React.useRef<HTMLDivElement>(null);
-  const onCloseRef = React.useRef(onClose);
-  onCloseRef.current = onClose;
-  useEffect(() => {
-    const prev = document.activeElement as HTMLElement;
-    document.body.style.overflow = "hidden";
-    ref.current?.focus();
-    const fn = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onCloseRef.current();
-      if (e.key === "Tab") {
-        const els = ref.current?.querySelectorAll<HTMLElement>(
-          'button:not(:disabled), input, select, a[href], [tabindex="0"]',
-        );
-        if (!els?.length) return;
-        const first = els[0],
-          last = els[els.length - 1];
-        if (
-          e.shiftKey &&
-          (document.activeElement === first ||
-            document.activeElement === ref.current)
-        ) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    };
-    document.addEventListener("keydown", fn);
-    return () => {
-      document.body.style.overflow = "";
-      document.removeEventListener("keydown", fn);
-      prev?.focus();
-    };
-  }, []);
-  return (
-    <div
-      className="modal-overlay"
-      onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
-      }}
-    >
-      <div
-        ref={ref}
-        tabIndex={-1}
-        className="modal"
-        role="dialog"
-        aria-modal="true"
-        aria-label={title}
-      >
-        <div className="modal-heading">
-          <h2>{title}</h2>
-          <button onClick={onClose} aria-label="Close dialog">
-            <X size={22} />
-          </button>
-        </div>
-        {children}
-      </div>
-    </div>
-  );
 }
 function shuffle<T>(a: T[]): T[] {
   const out = [...a];
@@ -1434,9 +1429,13 @@ function LessonModal({
 function SettingsModal({
   progress,
   setProgress,
+  account,
+  onOpenAuth,
   onClose,
 }: {
   progress: Progress;
+  account: ReturnType<typeof useAccountProgress>;
+  onOpenAuth: () => void;
   setProgress: React.Dispatch<React.SetStateAction<Progress>>;
   onClose: () => void;
 }) {
@@ -1444,6 +1443,14 @@ function SettingsModal({
   const [goal, setGoal] = useState(progress.goal);
   const [sound, setSound] = useState(progress.sound);
   const [confirm, setConfirm] = useState(false);
+  const [accountError, setAccountError] = useState("");
+  const [busy, setBusy] = useState(false);
+  const guest = loadProgress();
+  useEffect(() => {
+    setName(progress.name);
+    setGoal(progress.goal);
+    setSound(progress.sound);
+  }, [progress.name, progress.goal, progress.sound]);
   return (
     <Modal title="Make Yalla yours" onClose={onClose}>
       <form
@@ -1454,6 +1461,104 @@ function SettingsModal({
           onClose();
         }}
       >
+        {authConfigured && (
+          <div className="account-panel">
+            <span className="eyebrow">
+              {account.user
+                ? "YOUR YALLA ACCOUNT"
+                : "TAKE YOUR PROGRESS WITH YOU"}
+            </span>
+            {account.user ? (
+              <>
+                <p className="account-email">{account.user.email}</p>
+                <small>
+                  {account.status === "saved"
+                    ? "Cloud progress is up to date."
+                    : account.error || "Your progress is syncing…"}
+                </small>
+                {account.status === "conflict" && (
+                  <div className="conflict-actions">
+                    <p>
+                      These choices replace one saved version with the other.
+                      Keep this device’s progress, or load the progress already
+                      saved in your account.
+                    </p>
+                    <button
+                      type="button"
+                      className="secondary"
+                      onClick={() => void account.resolveConflict("device")}
+                    >
+                      Keep this device’s progress
+                    </button>
+                    <button
+                      type="button"
+                      className="secondary"
+                      onClick={() => void account.resolveConflict("cloud")}
+                    >
+                      Use cloud progress
+                    </button>
+                  </div>
+                )}
+                {guest.xp > 0 && account.canEdit && (
+                  <div className="guest-import">
+                    <p>
+                      This device has {guest.xp} guest XP. Import keeps your
+                      higher totals and combines completed lessons and
+                      favorites.
+                    </p>
+                    <button
+                      type="button"
+                      className="secondary"
+                      onClick={() => account.importGuest()}
+                    >
+                      Import guest progress
+                    </button>
+                  </div>
+                )}
+                <button
+                  className="text-button"
+                  type="button"
+                  disabled={busy}
+                  onClick={async () => {
+                    setBusy(true);
+                    setAccountError("");
+                    try {
+                      await account.signOut();
+                      onClose();
+                    } catch (e) {
+                      setAccountError(
+                        e instanceof Error ? e.message : "Could not sign out.",
+                      );
+                    } finally {
+                      setBusy(false);
+                    }
+                  }}
+                >
+                  {busy ? "Signing out…" : "Sign out"}
+                </button>
+              </>
+            ) : (
+              <>
+                <p>
+                  Save your name, XP, and lessons to your account. Keep learning
+                  on another device.
+                </p>
+                <button
+                  className="secondary"
+                  type="button"
+                  onClick={onOpenAuth}
+                >
+                  Sign in or create account
+                </button>
+              </>
+            )}
+            {accountError && (
+              <p className="auth-error" role="alert">
+                {accountError}
+              </p>
+            )}
+          </div>
+        )}
         <label>
           Your first name
           <input
@@ -1485,7 +1590,7 @@ function SettingsModal({
             onChange={(e) => setSound(e.target.checked)}
           />
         </label>
-        <button className="primary" type="submit">
+        <button className="primary" type="submit" disabled={!account.canEdit}>
           Save changes
           <Check size={17} />
         </button>
@@ -1501,7 +1606,12 @@ function SettingsModal({
                   className="danger"
                   type="button"
                   onClick={() => {
-                    setProgress({ ...emptyProgress });
+                    setProgress({
+                      ...emptyProgress,
+                      name: progress.name,
+                      goal: progress.goal,
+                      sound: progress.sound,
+                    });
                     onClose();
                   }}
                 >

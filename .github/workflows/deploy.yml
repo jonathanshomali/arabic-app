@@ -29,7 +29,14 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Run browser tests
         run: npm test
+      - name: Test account flows
+        run: npm run test:accounts
+      - name: Verify database access rules
+        run: npm run test:security
       - name: Build for GitHub Pages
+        env:
+          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.VITE_SUPABASE_PUBLISHABLE_KEY }}
         run: npm run build:pages
       - name: Upload the website
         uses: actions/upload-pages-artifact@v3

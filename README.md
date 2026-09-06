@@ -28,10 +28,12 @@ Before the first browser test run, install Chromium with `npx playwright install
 - Daily goals, local-calendar-day streaks, levels, weekly activity, and seven achievements.
 - Searchable 80-phrase collection with saved favorites.
 - Practice individual topics or a mixed review of learned phrases.
+- Email/password signup, verification, sign-in, password reset, and private cloud progress.
+- Guest progress import, failed-save recovery, and explicit cross-device conflict resolution.
 - Profile name, audio preference, daily goal settings, and confirmed progress reset.
 - Responsive mobile navigation, keyboard focus management, and reduced-motion support.
 
-Progress is stored in this browser's localStorage. There is no account system, cloud sync, or server. Clearing browser data removes progress. System Arabic speech synthesis is optional and depends on installed voices; these may pronounce standard Arabic rather than Palestinian dialect. Written pronunciation guides remain available.
+Email/password accounts save names, XP, and learning progress in Supabase. Guest progress remains in this browser; signed-in learners can explicitly import it from Settings. Passwords are sent over HTTPS and hashed by Supabase Auth. See [account setup and security](docs/accounts.md). System Arabic speech synthesis is optional and depends on installed voices; these may pronounce standard Arabic rather than Palestinian dialect. Written pronunciation guides remain available.
 
 ## Project structure
 
@@ -69,4 +71,4 @@ npm run preview -- --mode github-pages
 
 Open http://localhost:4173/arabic-app/. The `github-pages` mode prefixes built asset URLs with `/arabic-app/`; `npm run dev` and ordinary builds continue to work at `/`.
 
-Progress is stored per browser origin. The public website has separate progress from localhost; deploying does not transfer existing localhost XP or sync progress across devices.
+Signed-in progress syncs through Supabase across devices. Guest progress is stored per browser origin: localhost and the public website have separate guest data. Importing guest progress from Settings combines it with the signed-in account on that origin.

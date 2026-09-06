@@ -2942,3 +2942,247 @@ button[aria-pressed="true"] {
     margin-top: 15px;
   }
 }
+
+.signin-button {
+  background: #eaf0e1;
+  border: 1px solid #d7e2cb;
+  color: #396746;
+  font-size: 11px;
+  padding: 8px 12px;
+  border-radius: 7px;
+  white-space: nowrap;
+}
+.account-status {
+  max-width: 1332px;
+  margin: 15px 44px -12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #87977a;
+  font-size: 10px;
+  line-height: 1.7;
+}
+.account-status button {
+  font-size: 10px;
+  color: #477441;
+  text-decoration: underline;
+  flex-shrink: 0;
+}
+.account-status.error,
+.account-status.offline,
+.account-status.conflict {
+  color: #a17643;
+  background: #faf0dc;
+  border: 1px solid #eadfc4;
+  padding: 10px 13px;
+  border-radius: 8px;
+}
+.auth-intro {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin: -5px 0 20px;
+}
+.auth-intro > svg {
+  width: 92px;
+}
+.auth-intro p {
+  font-size: 12px;
+  color: #869277;
+  line-height: 1.9;
+  margin-top: 9px;
+}
+.auth-intro .eyebrow {
+  font-size: 8px;
+}
+.auth-tabs {
+  display: flex;
+  background: #edf0e4;
+  border-radius: 8px;
+  padding: 4px;
+  margin-bottom: 23px;
+  gap: 4px;
+}
+.auth-tabs button {
+  width: 50%;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #8c997a;
+}
+.auth-tabs .selected {
+  background: #fffefa;
+  box-shadow: 0 2px 6px #2f54200a;
+  color: #4c713c;
+}
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.auth-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+  color: #728264;
+}
+.auth-form input {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #dfe6d3;
+  background: #fffefa;
+  border-radius: 7px;
+  padding: 12px;
+  color: #425d36;
+  font-size: 14px;
+}
+.auth-input {
+  display: flex;
+  align-items: center;
+  border: 1px solid #dfe6d3;
+  background: #fffefa;
+  border-radius: 7px;
+  padding: 0 12px;
+  gap: 10px;
+  color: #a0ac91;
+}
+.auth-input input {
+  border: 0;
+  padding-inline: 0;
+  background: none;
+}
+.auth-input:focus-within {
+  outline: 2px solid #90a576;
+  outline-offset: 2px;
+}
+.auth-input input:focus-visible {
+  outline: none;
+}
+.auth-input button {
+  display: flex;
+  color: #899b73;
+  padding: 7px 0;
+}
+.auth-form label small {
+  font-size: 10px;
+  line-height: 1.7;
+  color: #9aa78a;
+}
+.auth-form .primary {
+  margin-top: 2px;
+  font-size: 12px;
+}
+.auth-form .text-button {
+  margin-top: -8px;
+}
+.auth-error {
+  color: #a26045;
+  background: #faeee3;
+  border-radius: 7px;
+  padding: 12px 14px;
+  font-size: 11px;
+  line-height: 1.8;
+}
+.auth-security {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  border-top: 1px solid #e8ebdf;
+  padding-top: 16px;
+  margin-top: 23px;
+  color: #9da98d;
+}
+.auth-security svg {
+  margin-top: 3px;
+}
+.auth-security p {
+  font-size: 10px;
+  line-height: 1.8;
+}
+.auth-success {
+  text-align: center;
+  padding: 20px 5px;
+  color: #749258;
+}
+.auth-success p {
+  font-size: 13px;
+  line-height: 1.9;
+  margin: 16px 0 22px;
+}
+.account-panel {
+  border: 1px solid #e3e8d6;
+  background: #f0f3e7;
+  border-radius: 10px;
+  padding: 17px;
+}
+.account-panel p {
+  font-size: 11px;
+  line-height: 1.8;
+  color: #849373;
+  margin: 9px 0;
+}
+.account-panel .account-email {
+  color: #587747;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+.account-panel small {
+  font-size: 10px;
+  line-height: 1.8;
+  display: block;
+  color: #8f9c7b;
+}
+.guest-import {
+  border-top: 1px solid #dce3ce;
+  margin-top: 12px;
+  padding-top: 4px;
+}
+.conflict-actions button {
+  margin: 3px 5px 4px 0;
+}
+@media (max-width: 640px) {
+  .account-status {
+    margin: 12px 19px -9px;
+    font-size: 9px;
+    align-items: flex-start;
+  }
+  .top-stats {
+    gap: 9px;
+  }
+  .signin-button {
+    font-size: 10px;
+    padding: 7px 9px;
+  }
+  .auth-intro {
+    gap: 10px;
+  }
+  .auth-intro > svg {
+    width: 75px;
+  }
+  .auth-intro p {
+    font-size: 11px;
+  }
+  .auth-form input {
+    font-size: 16px;
+  }
+}
+@media (max-width: 370px) {
+  .topbar {
+    padding-inline: 14px;
+  }
+  .top-stats {
+    gap: 6px;
+  }
+  .course-label {
+    font-size: 9px;
+  }
+  .top-stats > span {
+    font-size: 9px;
+    gap: 2px;
+  }
+  .top-stats svg {
+    width: 15px;
+  }
+}
