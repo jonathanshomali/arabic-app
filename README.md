@@ -51,3 +51,22 @@ Starter greetings and usage were checked against [Study in Palestine](https://st
 The brand, mascot, and illustrations are original to this app. Fonts load from Google Fonts, with local sans-serif fallbacks.
 
 The expanded course keeps the original lesson IDs and storage format. Existing XP, completed lessons, favorites, and earned starter-course achievements are preserved.
+
+## GitHub Pages deployment
+
+The deployment workflow in `.github/workflows/deploy.yml` tests and builds the app before publishing it. Pushes to `main` deploy automatically once GitHub Pages is enabled. You can also start it manually from the Actions tab.
+
+GitHub must allow Pages for this repository. A private repository requires an eligible paid GitHub plan; alternatively, its owner can choose to make the source repository public. In **Settings → Pages**, select **GitHub Actions** as the source.
+
+The target URL is https://jonathanshomali.github.io/arabic-app/.
+
+To verify that deployment locally:
+
+```sh
+npm run build:pages
+npm run preview -- --mode github-pages
+```
+
+Open http://localhost:4173/arabic-app/. The `github-pages` mode prefixes built asset URLs with `/arabic-app/`; `npm run dev` and ordinary builds continue to work at `/`.
+
+Progress is stored per browser origin. The public website has separate progress from localhost; deploying does not transfer existing localhost XP or sync progress across devices.
