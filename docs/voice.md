@@ -27,7 +27,27 @@ to invent pronunciations for new lessons.
 review status for every clip. Native review is still pending for every clip.
 Listen in the Phrasebook, compare each phrase and stress pattern with the guide,
 and edit the inputs before regenerating corrections. Playback/finite-signal
-checks do not establish dialect accuracy.
+checks do not establish dialect accuracy. `recognition.json` records independent
+Whisper transcriptions for all clips with their file hashes. Five speech anchors
+must match within a limited character error rate before deployment. Expected
+lesson text is never supplied as a hint to the recognizer. ASR is a regression
+check for intelligible speech, not a native-speaker endorsement.
+
+## Static-noise fix
+
+The first pack contained noise because the installed Kokoro loader silently
+skipped checkpoint parameters. Sofelia stores modern parametrized weight-norm
+names, while Kokoro 0.9.4 uses legacy `weight_g`/`weight_v` names. Its permissive
+fallback accepted missing speech weights. `model_loader.py` now converts those
+names, matches the checkpoint’s non-affine instance normalization, and strictly
+loads every component. Any remaining missing, unexpected, or wrong-shaped
+parameter aborts generation. Tests compare converted model output against a
+trained-format module and verify invalid checkpoints fail.
+
+All original clips have been regenerated. A retained broken-hello fixture ensures
+the new signal check rejects the actual previous failure. Generation and CI
+reject excessive sample-to-sample high-frequency energy; this guard catches
+static but does not alone prove that speech is correct.
 
 ## Regenerate
 
@@ -40,13 +60,18 @@ uv venv --python 3.11 /tmp/yalla-voice-env
 uv pip install --python /tmp/yalla-voice-env/bin/python -r scripts/voice/requirements.txt
 npm run voice:export
 /tmp/yalla-voice-env/bin/python scripts/voice/generate.py
+uv venv --python 3.11 /tmp/yalla-review-env
+uv pip install --python /tmp/yalla-review-env/bin/python faster-whisper==1.2.1
+/tmp/yalla-review-env/bin/python scripts/voice/recognize.py
+npm run voice:check
+/tmp/yalla-voice-env/bin/python -m unittest discover -s scripts/voice -p 'test_*.py'
 ```
 
 The checkpoint is pinned to revision
 `e1b729a4641311df2d78a22d81c42c10bfda64db`. The loader uses weights-only PyTorch
 loading and the installed Kokoro implementation; no model-repository Python code
 is executed. Generation validates full phrase coverage, supported phonemes,
-finite samples, duration, and non-silence, then writes 24 kHz mono PCM WAV files
+finite samples, duration, non-silence, and static-noise energy, then writes 24 kHz mono PCM WAV files
 and a manifest. Content-derived filenames prevent stale cached clips after edits.
 
 All clips are served by GitHub Pages on demand. The browser downloads only the

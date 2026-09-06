@@ -1,0 +1,494 @@
+{
+  "recognizer": "Systran/faster-whisper-small",
+  "implementation": "faster-whisper 1.2.1",
+  "language": "ar",
+  "expectedTextPrompt": false,
+  "clips": [
+    {
+      "phrase": "مرحبا",
+      "file": "audio/yalla-v1/b6cd77dda060b2c3.wav",
+      "sha256": "b316920a161be6835ccea33861be4ebf3cb5b16d52547b30ddd075e87befc411",
+      "transcript": "مرحبا"
+    },
+    {
+      "phrase": "أهلين",
+      "file": "audio/yalla-v1/0033014df6e68066.wav",
+      "sha256": "058ac5e9d1ed1a9a6f6b7d4a953b90b970510eee7a2bf631e3d55673d6ee2025",
+      "transcript": "أهلين"
+    },
+    {
+      "phrase": "شكراً",
+      "file": "audio/yalla-v1/8409d69f76998fdc.wav",
+      "sha256": "a8416f555b7adf4176ae3db18a110277fa966bfc38813c81742076b28ebcb268",
+      "transcript": "شكرا"
+    },
+    {
+      "phrase": "يلا",
+      "file": "audio/yalla-v1/5c084456c0d92195.wav",
+      "sha256": "b06170dcb55b2532bc625410d40ac18e62fba718f898614b9e7413ae68dd974b",
+      "transcript": "يلا"
+    },
+    {
+      "phrase": "مع السلامة",
+      "file": "audio/yalla-v1/e7618a21efb24c0e.wav",
+      "sha256": "3b5bfba914fb68cd8680f942ac35297e01d663ab7389f4802a12680df75ae1c7",
+      "transcript": "مع السلامة"
+    },
+    {
+      "phrase": "كيفك؟",
+      "file": "audio/yalla-v1/4d223e4bdb917084.wav",
+      "sha256": "93dddbc39ff98ce6dd2fb8f04d10bc715ce8a0d9a4543be091931e42820c7eeb",
+      "transcript": "كيفق"
+    },
+    {
+      "phrase": "منيح",
+      "file": "audio/yalla-v1/9098ebc564594af3.wav",
+      "sha256": "43aa2ac7f16515259c21af4e7621216992dae2753c54c0fc45929fa6e4e5a32e",
+      "transcript": "مرحبا"
+    },
+    {
+      "phrase": "الحمد لله",
+      "file": "audio/yalla-v1/2cdd58a11b4205e1.wav",
+      "sha256": "24c6462550d7d54c602dd78d728d1ad102c5fc14ed6c2d446c1f553e5df88cda",
+      "transcript": "الحمدلله"
+    },
+    {
+      "phrase": "وإنت؟",
+      "file": "audio/yalla-v1/1d22622e1ce3b193.wav",
+      "sha256": "fcf4473f0e2c8f39c8ebcd8dc1c045fd5f3b133c3138c9f95eae9d310a96571d",
+      "transcript": "وإنطا"
+    },
+    {
+      "phrase": "تمام",
+      "file": "audio/yalla-v1/749dafc247b1f231.wav",
+      "sha256": "1714dd0969d178dd138a1b82d1569b61c2a629bed6ea7996162ec92af1b2023a",
+      "transcript": "تمام"
+    },
+    {
+      "phrase": "شو اسمك؟",
+      "file": "audio/yalla-v1/3cc60191e1b4bbfd.wav",
+      "sha256": "e174fa687763837d6eb9814827ec5978b62d8e3b6bd753aedebc82ca2b03f4a9",
+      "transcript": "شو اسمك"
+    },
+    {
+      "phrase": "اسمي",
+      "file": "audio/yalla-v1/e38173e2f574c62d.wav",
+      "sha256": "bf852b6c14d90ac0e40fae7da1c0cb0df2f5f46abd63dc30cb76112bce048469",
+      "transcript": "اسمي"
+    },
+    {
+      "phrase": "أنا من فلسطين",
+      "file": "audio/yalla-v1/6695f0dbc7cd1a28.wav",
+      "sha256": "e995bc7ddea020faf36d56b50eda1cc58742bc383756cf6c111c93f0bc9a37e6",
+      "transcript": "أنا من فلسطين"
+    },
+    {
+      "phrase": "أهلاً وسهلاً",
+      "file": "audio/yalla-v1/48c90e8748857f6b.wav",
+      "sha256": "9b4440467084ffdb1b350764d7ee9c487af08ab9334fa57320f6e30738fb113b",
+      "transcript": "أهلاً وصحلاً"
+    },
+    {
+      "phrase": "تشرفنا",
+      "file": "audio/yalla-v1/8ccddca92d0b6e85.wav",
+      "sha256": "65f0ebb02e9c2d2a1bdbb017758dd89f7379779b07450c6295cef6a4d45f5084",
+      "transcript": "تشرفني"
+    },
+    {
+      "phrase": "آه",
+      "file": "audio/yalla-v1/e8763eb676d4fa5a.wav",
+      "sha256": "8f9f43810745665f16ed7f6eaa53f90576482146cbf098b05532d0a476647a82",
+      "transcript": "اوه"
+    },
+    {
+      "phrase": "لا",
+      "file": "audio/yalla-v1/e6cb32b399f86ad5.wav",
+      "sha256": "55a15ebfece1d21651fad7a620e7fd842f76c033f049483e9f2f61dd55ae07b4",
+      "transcript": "لا"
+    },
+    {
+      "phrase": "لو سمحت",
+      "file": "audio/yalla-v1/a7771c9c7bea6b10.wav",
+      "sha256": "aacdfce8941ed339c8e9e82707977032c0cbc27cacd2b47413d32262ad90faf2",
+      "transcript": "لو سمحت"
+    },
+    {
+      "phrase": "بدي",
+      "file": "audio/yalla-v1/be8e866805958efe.wav",
+      "sha256": "a989c5eaaae96e3dade47bdbafa4321b7f2c41d7d527c5dc37a4570780aa31d4",
+      "transcript": "بدي"
+    },
+    {
+      "phrase": "ما بعرف",
+      "file": "audio/yalla-v1/c75cb6c6400c40dd.wav",
+      "sha256": "c546cf28e5a84f70d44bc374016f0c69a42c9974ccad88003274c981befad7f3",
+      "transcript": "ما يعرف"
+    },
+    {
+      "phrase": "قهوة",
+      "file": "audio/yalla-v1/5d74922d3c41ec41.wav",
+      "sha256": "c51eb926be26a21a7fb2c6daabd91806a3cdf2fdd6826f1ab310cec9ce0befc2",
+      "transcript": "أهوه"
+    },
+    {
+      "phrase": "شاي",
+      "file": "audio/yalla-v1/3a2f6ab70091d111.wav",
+      "sha256": "03b40f9d72441e56498e80c9051ac194866c67f0cca97bc6e7108cc01841a1c0",
+      "transcript": "شاي"
+    },
+    {
+      "phrase": "مي",
+      "file": "audio/yalla-v1/3ea61ed3e7ee3eb3.wav",
+      "sha256": "b62b3ff5db1cec1f0d7dbcffe5ab2e9eb5f6ba9ff563892328e18284b174ab9d",
+      "transcript": "مي"
+    },
+    {
+      "phrase": "بدون سكر",
+      "file": "audio/yalla-v1/7fc77c462b276fa5.wav",
+      "sha256": "56584fc6322217f444f93f0c8f4be5edd9102bd66842deaf97ef3b3b20203db6",
+      "transcript": "بدون سؤكر"
+    },
+    {
+      "phrase": "الحساب لو سمحت",
+      "file": "audio/yalla-v1/10dfb8294bca0380.wav",
+      "sha256": "067cf08c1b096708809dd0440e8ac745eafcb34fc6a3a95bc2b634eecee112d3",
+      "transcript": "الحساب لو سمحت"
+    },
+    {
+      "phrase": "خبز",
+      "file": "audio/yalla-v1/cf01f11d56737be1.wav",
+      "sha256": "dd9fbe02fbdbba9d209db6ff350fd978da240b885a6dcab779d4f4bf23154e0b",
+      "transcript": "خبز"
+    },
+    {
+      "phrase": "زيت زيتون",
+      "file": "audio/yalla-v1/a5c56139e36744cb.wav",
+      "sha256": "3bebc6785fd262154b2e9db2de05a2745afb5537e6a6a6c45c5e43c0570107a7",
+      "transcript": "زيت زيتون"
+    },
+    {
+      "phrase": "زعتر",
+      "file": "audio/yalla-v1/f5be3e4b51047973.wav",
+      "sha256": "97979111b9950bb27e893f73af0df320821d48e2291f541e7a9f5d423d2c6735",
+      "transcript": "زعطر"
+    },
+    {
+      "phrase": "زاكي",
+      "file": "audio/yalla-v1/81efc2ff47a8eb7e.wav",
+      "sha256": "8bf846819484b917eebdf4abb994c436077104ee1a1b917ffd3b6a2ac533e9b6",
+      "transcript": "ذاكي"
+    },
+    {
+      "phrase": "صحتين",
+      "file": "audio/yalla-v1/37a1760778352082.wav",
+      "sha256": "239b42c135cf15f37912a63dc8499122a284fb549a7e3aac7458595edd1b37f0",
+      "transcript": "صحتين"
+    },
+    {
+      "phrase": "وين؟",
+      "file": "audio/yalla-v1/6b5b1f98bb8dbd9c.wav",
+      "sha256": "b88fc39daaf0069021c8ca36ed80f8ce642c2436512a9c6e7f310a93f6aab3ae",
+      "transcript": "وين"
+    },
+    {
+      "phrase": "هون",
+      "file": "audio/yalla-v1/583969815a1dfda7.wav",
+      "sha256": "39f41b6cc8e4d09db5991c101a6b889a1a557b3ac25a9701a7d275a449019015",
+      "transcript": "هون"
+    },
+    {
+      "phrase": "هناك",
+      "file": "audio/yalla-v1/68f7496dab21c840.wav",
+      "sha256": "8596dbf48552a51d8a19a31e205bebf844629196125a8c7f2e2293c692e53830",
+      "transcript": "هنك"
+    },
+    {
+      "phrase": "يمين",
+      "file": "audio/yalla-v1/8d077d9647515bf2.wav",
+      "sha256": "f9a785c46bafba8eaa866927afa0bdfea34a4c4c28db7838f458dbcc98a6d4b3",
+      "transcript": "يامين"
+    },
+    {
+      "phrase": "شمال",
+      "file": "audio/yalla-v1/9ee870834c54368a.wav",
+      "sha256": "98f1777bc668551de3fd55b1b043907d54fb947f263d7043776acd01acfd18c2",
+      "transcript": "شمال"
+    },
+    {
+      "phrase": "بدي قهوة",
+      "file": "audio/yalla-v1/9bb6e11c4a961b05.wav",
+      "sha256": "ea65881255282f3caab38419281bca3466465aa6b67a3b6a03d2dd27c4d2988e",
+      "transcript": "بدي أهوى"
+    },
+    {
+      "phrase": "وين القهوة؟",
+      "file": "audio/yalla-v1/2f3dd7de6879b436.wav",
+      "sha256": "1211197a84aece5906e57a8944f6478687ed3496cf02da7af95ddba0c7f62ba4",
+      "transcript": "وين الأهوى؟"
+    },
+    {
+      "phrase": "شو بدك؟",
+      "file": "audio/yalla-v1/c11f175f6238628b.wav",
+      "sha256": "5cb1e1e02c6cce50bdf011a0798124434aa2f81ec8018240b0ad7e650d638da1",
+      "transcript": "شوب الدك"
+    },
+    {
+      "phrase": "يلا نروح",
+      "file": "audio/yalla-v1/4404e205e30bc28c.wav",
+      "sha256": "766158ca3c29d31259f662582c4b2c69db7ef94335bd73328a67f2ca497bc540",
+      "transcript": "يلا نروح"
+    },
+    {
+      "phrase": "بشوفك بكرا",
+      "file": "audio/yalla-v1/ee628d84e65fa6f2.wav",
+      "sha256": "e2edafe2557b74be39cfb205fd395f2874f8a45c3f8f21d341953968af29d5b4",
+      "transcript": "بشوفك بكرة"
+    },
+    {
+      "phrase": "أمي",
+      "file": "audio/yalla-v1/607691f568fa21c1.wav",
+      "sha256": "9c61835c88a04b71a77e9022f57b85858eef574f09d56435bec38a582ea3690f",
+      "transcript": "أمي"
+    },
+    {
+      "phrase": "أبوي",
+      "file": "audio/yalla-v1/d270551ceccbc191.wav",
+      "sha256": "698658a1a73bb297551d625da9587fd73381ebc5436ecbcbfc87ccafbd13f21d",
+      "transcript": "أبوي"
+    },
+    {
+      "phrase": "أخوي",
+      "file": "audio/yalla-v1/0e891937a2f4dcd4.wav",
+      "sha256": "2e0b8a56f0d3e3646f261af76823c24f0a15d6ba1f0934baed7ba3028ead4e4f",
+      "transcript": "أخوي"
+    },
+    {
+      "phrase": "أختي",
+      "file": "audio/yalla-v1/862c8cf7580f8e7a.wav",
+      "sha256": "21316c75a6d510e951c4315213c133c047ab54441c520c1a9f52b8c9435df02c",
+      "transcript": "اختي"
+    },
+    {
+      "phrase": "صاحبي",
+      "file": "audio/yalla-v1/602ea9dc32b11663.wav",
+      "sha256": "f77172be787a609bf802ab2e13d8d4db4ba6e7782708039ee122f858ec72c979",
+      "transcript": "صاحبي"
+    },
+    {
+      "phrase": "واحد",
+      "file": "audio/yalla-v1/9a2bd138bb2ec3bc.wav",
+      "sha256": "482925a7d869880b2c8dc6b2ba4b984b71be2ecd4766ab6ea2c93b5692172088",
+      "transcript": "وحد"
+    },
+    {
+      "phrase": "تنين",
+      "file": "audio/yalla-v1/39aafb59bce305e1.wav",
+      "sha256": "2dcab9f07b4b72d12c21a2c5ce803388b353df9ea76be0940aed816300a8dd4f",
+      "transcript": "تنين"
+    },
+    {
+      "phrase": "تلاتة",
+      "file": "audio/yalla-v1/f2a6a0bbea919034.wav",
+      "sha256": "1549f3bec7eca96eeceae27f3dc29cd944147684283b4ec01cc19764265e56f5",
+      "transcript": "تلاتي"
+    },
+    {
+      "phrase": "أربعة",
+      "file": "audio/yalla-v1/1366949fa8c6b3b5.wav",
+      "sha256": "10cb05f5d9b37e7f606324c778e64399f74fbb9c9cab10f73b1eb8babe220712",
+      "transcript": "أربعة"
+    },
+    {
+      "phrase": "خمسة",
+      "file": "audio/yalla-v1/9fd99056c9598ba2.wav",
+      "sha256": "d5a3a0d30ffb3ad03361c0f47b9d68f0079f38794f4b8e40fcd4e8d7b9ba442e",
+      "transcript": "خمسة"
+    },
+    {
+      "phrase": "قديش؟",
+      "file": "audio/yalla-v1/50dacfe0b8e58497.wav",
+      "sha256": "b3e04b8bedb563d9ad51e95215c76e8d5bb79d8543d91e828ef71507cd4da2af",
+      "transcript": "ادش"
+    },
+    {
+      "phrase": "قديش هادا؟",
+      "file": "audio/yalla-v1/eabec603176a0f99.wav",
+      "sha256": "f8e33198db5a6fbdd519276237c681039de3ab2eeccad42f37aa63a6604d8ecf",
+      "transcript": "إدى شهادة"
+    },
+    {
+      "phrase": "غالي",
+      "file": "audio/yalla-v1/6871f46dd55c70e9.wav",
+      "sha256": "94f5e063b7832d7c737e3b2015866fc05a1de8ddf7b5e5f540ea07199d60324a",
+      "transcript": "غالي"
+    },
+    {
+      "phrase": "رخيص",
+      "file": "audio/yalla-v1/eefbae5683d531d6.wav",
+      "sha256": "806fab44aadca621a3270721a1e510fb5f28fc9d396d7b91625aa0aa6b0831f6",
+      "transcript": "رخيس"
+    },
+    {
+      "phrase": "بدي هادا",
+      "file": "audio/yalla-v1/71b90612a94bfcd3.wav",
+      "sha256": "763e7c67471465a00a68e798473b1b0d54497689c408c526a6408d69b31f48c2",
+      "transcript": "بضحادة"
+    },
+    {
+      "phrase": "اليوم",
+      "file": "audio/yalla-v1/9c90e2bc1b91a715.wav",
+      "sha256": "fc1b3d9637ae293c84dd6dcd1687ef7c2055b0f23c25104cacac1b52da64e265",
+      "transcript": "اليوم"
+    },
+    {
+      "phrase": "بكرا",
+      "file": "audio/yalla-v1/e0f7e7ac04123561.wav",
+      "sha256": "017d366bcce1bbf94b7c1ea468d61c1a9efebbd06effc988cd14b8ed48c99932",
+      "transcript": "بكرة"
+    },
+    {
+      "phrase": "مبارح",
+      "file": "audio/yalla-v1/f57f79152c23d3cb.wav",
+      "sha256": "5d5e39db0c3b736d2a359c411037edb7e4a5e774f22d510e8f85b0b4674ad48e",
+      "transcript": "بارح"
+    },
+    {
+      "phrase": "هلأ",
+      "file": "audio/yalla-v1/129aa1ba2ec7f2f5.wav",
+      "sha256": "790ba06baaa834d06a59e14c8a8b4f6994e61058ec2b2fd9cbb9b73304fb1a33",
+      "transcript": "هلا"
+    },
+    {
+      "phrase": "بعدين",
+      "file": "audio/yalla-v1/c0663fccbdb26fba.wav",
+      "sha256": "df01dd5bf6d92763f36bf135dc37ef984dd2115ced148e9a485b8139b5cd6a61",
+      "transcript": "بعدين"
+    },
+    {
+      "phrase": "مبسوط",
+      "file": "audio/yalla-v1/aacfa451de6530ee.wav",
+      "sha256": "53ee7a10e05b7e3db9aa0eaa5251c9c981b3d02cfd69ca3313f8d7fc5b785b41",
+      "transcript": "مبسوط"
+    },
+    {
+      "phrase": "تعبان",
+      "file": "audio/yalla-v1/4eb846af12bd1aa2.wav",
+      "sha256": "5ac759a462287852d92f587a831437027e90279790c8d2dbe751990542a38be3",
+      "transcript": "تعبن"
+    },
+    {
+      "phrase": "جوعان",
+      "file": "audio/yalla-v1/8f0c88334f47ab90.wav",
+      "sha256": "6236e62702871c2587fc0943ee3477d32183690b519b85880ac4f457617594b9",
+      "transcript": "جوعان"
+    },
+    {
+      "phrase": "عطشان",
+      "file": "audio/yalla-v1/e13fb7b4149f4f5d.wav",
+      "sha256": "464e3852f291dff378e8f671b7a731c416e1f50f85b07fd5a6893d5614a166fa",
+      "transcript": "عطشان"
+    },
+    {
+      "phrase": "مشغول",
+      "file": "audio/yalla-v1/7194a63e25c62938.wav",
+      "sha256": "355b3cb4181da4b72f4d5a289124ca6e828db9d478447138cddc156eb5fc6d32",
+      "transcript": "مشغول"
+    },
+    {
+      "phrase": "شو رأيك؟",
+      "file": "audio/yalla-v1/50e421d8a0646b44.wav",
+      "sha256": "938958aecca212e252399b732288b922575402a5ea9a6896f0b39ab8ca6382fe",
+      "transcript": "شو رأيك"
+    },
+    {
+      "phrase": "نروح؟",
+      "file": "audio/yalla-v1/c2917cba8994249d.wav",
+      "sha256": "97dbb8bb7f05bf3b8c1342eb15153b1695e0f1e515db82bb491d4b7b5f13146b",
+      "transcript": "نروح"
+    },
+    {
+      "phrase": "عالبيت",
+      "file": "audio/yalla-v1/4b6db9bdc8e82a17.wav",
+      "sha256": "44fe46e5074859691612d40948acbea7876d27f42292e70c134c71481d11bdcc",
+      "transcript": "عالبيت"
+    },
+    {
+      "phrase": "عالسوق",
+      "file": "audio/yalla-v1/42c4e62ad66fa327.wav",
+      "sha256": "207601c321251d389dc64636c30e01cd3ce04b5a55edb5f09d5837dc7cdec2b3",
+      "transcript": "عسوء"
+    },
+    {
+      "phrase": "مع بعض",
+      "file": "audio/yalla-v1/b552896c4d0557cc.wav",
+      "sha256": "b7071569a4f665fc02696f810b4e58cb5d7b2b5b09e981cf5fc3f61acc775fb7",
+      "transcript": "مع بعض"
+    },
+    {
+      "phrase": "مش فاهم",
+      "file": "audio/yalla-v1/83bcf0b06a45c744.wav",
+      "sha256": "43d1ebdfda473a4b197143b2c93a399e79d3b52c5ade2d84ed4375f957bff3c0",
+      "transcript": "مش فهم"
+    },
+    {
+      "phrase": "كمان مرة",
+      "file": "audio/yalla-v1/e32158d2bbc94cd5.wav",
+      "sha256": "7d4808a71d037107a937b74739583b6990742c3a9287a44e95cd7b46b2d52235",
+      "transcript": "كمان مرّا"
+    },
+    {
+      "phrase": "شوي شوي",
+      "file": "audio/yalla-v1/ec6060e0bf5bd07d.wav",
+      "sha256": "8ce6f1898c531a85e7d2aa35e708cd8d8d716ac057bf918a14bc0dc942e33558",
+      "transcript": "شوي شوي"
+    },
+    {
+      "phrase": "شو يعني؟",
+      "file": "audio/yalla-v1/dfc0d3e5f7a7211c.wav",
+      "sha256": "6e1f653ea462e8271ea8d9be3d7cc61213e29321d06f7aefb0c8794386ac3aa4",
+      "transcript": "شو يعني؟"
+    },
+    {
+      "phrase": "بحكي عربي شوي",
+      "file": "audio/yalla-v1/467a538e5fce0877.wav",
+      "sha256": "dc3285526f2fa8c1fe06e2e5f46624c8316259abab00a2006fabbc232889467f",
+      "transcript": "بحكي عربي شوي"
+    },
+    {
+      "phrase": "تفضل",
+      "file": "audio/yalla-v1/8bc982a7434203ed.wav",
+      "sha256": "52cbe88a558f7a0e694affec3ce6fc719dfdecbf167d59530039d47c61516fb6",
+      "transcript": "تفضل"
+    },
+    {
+      "phrase": "نورت",
+      "file": "audio/yalla-v1/9dba8f1689b2dbed.wav",
+      "sha256": "dd810470e8de11cb4d79e8a964591d8ad249480531d2fa403550341340409e03",
+      "transcript": "نورت"
+    },
+    {
+      "phrase": "يسلموا",
+      "file": "audio/yalla-v1/9a68770d09b8eb8e.wav",
+      "sha256": "5c75dbffe2e031c126cc039cea6a5c45c20a89ea3f2c865eff8fcf376fb3fe46",
+      "transcript": "يسلموا"
+    },
+    {
+      "phrase": "الله يعطيك العافية",
+      "file": "audio/yalla-v1/f7e9b91b623174c8.wav",
+      "sha256": "c6d45a016a5fd17f3d3486c61c9c34880246083fc571848bb45060213491a67d",
+      "transcript": "اللي يعتك العافية"
+    },
+    {
+      "phrase": "الله معك",
+      "file": "audio/yalla-v1/f504208bf31da07f.wav",
+      "sha256": "f8c318806276a54528dd1232dc5a040439f7e54c7679ed85222cd974fa81a147",
+      "transcript": "ألا معك"
+    },
+    {
+      "phrase": "حبيبي",
+      "file": "audio/yalla-v1/563afcef9ad7cad8.wav",
+      "sha256": "ffe457d69e193c753f1de885624d0893f0b3194b8d1b2414a707fa2a5e7ce454",
+      "transcript": "حبيبي"
+    }
+  ]
+}

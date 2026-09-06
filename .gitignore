@@ -9,3 +9,4 @@ playwright-report
 .env.*
 !.env.example
 supabase/.temp/
+__pycache__/

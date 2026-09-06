@@ -12,7 +12,7 @@ import numpy as np
 import soundfile as sf
 import torch
 from huggingface_hub import hf_hub_download
-from kokoro import KModel
+from model_loader import load_model
 
 MODEL_ID = "hamdallah/Sofelia-TTS-82M"
 REVISION = "e1b729a4641311df2d78a22d81c42c10bfda64db"
@@ -49,8 +49,7 @@ def main():
 
     torch.set_num_threads(4)
     torch.manual_seed(42)
-    model = KModel(repo_id="hexgrad/Kokoro-82M", config=model_file("config.json"),
-                   model=model_file("kokoro_sofelia_82M.pth")).cpu().eval()
+    model = load_model(model_file("config.json"), model_file("kokoro_sofelia_82M.pth"))
     voice = torch.load(model_file("voices/eliaa.pt"), map_location="cpu", weights_only=True)
     out = ROOT / "public/audio/yalla-v1"
     out.mkdir(parents=True, exist_ok=True)
@@ -68,6 +67,9 @@ def main():
         rms = float(np.sqrt(np.mean(samples ** 2)))
         if not np.isfinite(samples).all() or not 0.25 <= duration <= 15 or rms < 0.002:
             raise ValueError(f"Invalid/silent audio for {phrase['ar']}")
+        difference_ratio = float(np.sum(np.diff(samples) ** 2) / np.sum(samples ** 2))
+        if difference_ratio >= 1.8:
+            raise ValueError(f"Static/noise detected for {phrase['ar']}: {difference_ratio:.3f}")
         # Preserve natural dynamics; only attenuate peaks that would clip PCM.
         samples = samples * min(1.0, 0.95 / max(peak, 0.001))
         # A short trailing pad prevents final consonants being lost at playback end.
