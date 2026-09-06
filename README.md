@@ -72,3 +72,5 @@ npm run preview -- --mode github-pages
 Open http://localhost:4173/arabic-app/. The `github-pages` mode prefixes built asset URLs with `/arabic-app/`; `npm run dev` and ordinary builds continue to work at `/`.
 
 Signed-in progress syncs through Supabase across devices. Guest progress is stored per browser origin: localhost and the public website have separate guest data. Importing guest progress from Settings combines it with the signed-in account on that origin.
+
+The native-speaker recording pilot adds automatic, clearly disclosed voice contributions from lesson cards and the Phrasebook. Participants sign in, record up to 20 seconds, replay or retry uploads, and delete submissions in Settings. See [recording setup, review, and training-dataset export](docs/recordings.md).

@@ -1461,6 +1461,143 @@ footer [lang="ar"] {
   text-align: center;
   color: #717b64;
 }
+.phrase-recorder {
+  margin: 20px 0;
+  padding: 16px;
+  border: 1px solid #dbe2d0;
+  border-radius: 16px;
+  background: #f5f7ec;
+  text-align: left;
+}
+.recorder-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #426343;
+}
+.recorder-heading strong {
+  font-size: 14px;
+}
+.recorder-heading > span {
+  margin-left: auto;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.phrase-recorder p {
+  font-size: 12px;
+  line-height: 1.65;
+  margin: 12px 0;
+  color: #596653;
+}
+.phrase-recorder button,
+.recording-prompt button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.record-stop {
+  background: #a8423d;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+.recorded-take {
+  margin-top: 14px;
+  display: grid;
+  gap: 8px;
+}
+.recorded-take audio {
+  width: 100%;
+  max-width: 100%;
+  height: 42px;
+}
+.recorded-take a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #35694b;
+  font-size: 12px;
+}
+.recorded-take small {
+  display: block;
+  margin-top: 8px;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.phrase-recorder .recording-saved {
+  color: #38683e;
+}
+.recording-prompt {
+  text-align: center;
+}
+.recording-prompt > span {
+  font-family: "Noto Sans Arabic", sans-serif;
+  font-size: 30px;
+  line-height: 2;
+  display: block;
+  padding-block: 4px;
+}
+.recording-prompt p {
+  color: #738162;
+  font-size: 14px;
+  margin: 4px 0 16px;
+}
+.recording-prompt button {
+  margin-inline: auto;
+}
+.recording-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-block: 12px;
+}
+.contributions-panel {
+  padding: 16px;
+  border: 1px solid #dbe2d0;
+  border-radius: 12px;
+}
+.contributions-panel summary {
+  color: #456742;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+}
+.contributions-panel p {
+  font-size: 12px;
+  line-height: 1.6;
+}
+.contributions-panel ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.contributions-panel li {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-top: 1px solid #e2e7d9;
+}
+.contributions-panel li small {
+  display: block;
+  margin-top: 4px;
+  font-size: 10px;
+  line-height: 1.6;
+}
+.contributions-panel [lang="ar"] {
+  font-family: "Noto Sans Arabic", sans-serif;
+  line-height: 1.9;
+}
+.contributions-panel button {
+  font-size: 11px;
+}
 .lesson-progress {
   display: flex;
   justify-content: space-between;

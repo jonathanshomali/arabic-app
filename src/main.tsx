@@ -21,6 +21,7 @@ import {
   Target,
   Trophy,
   Volume2,
+  Mic,
   X,
   Zap,
   Bookmark,
@@ -50,6 +51,8 @@ import {
 } from "./usePronunciation";
 import { Modal } from "./Modal";
 import { WelcomeModal, needsWelcome, rememberWelcome } from "./WelcomeModal";
+import { PhraseRecorder } from "./PhraseRecorder";
+import { ContributionsPanel } from "./ContributionsPanel";
 import { AuthModal, type AuthMode } from "./AuthModal";
 import { useAccountProgress } from "./useAccountProgress";
 import { authConfigured } from "./supabase";
@@ -83,6 +86,7 @@ function App() {
   useEffect(() => {
     setSession(null);
     setSettings(false);
+    setRecordPhrase(null);
   }, [account.user?.id]);
   const [session, setSession] = useState<{
     lesson: Lesson;
@@ -93,6 +97,10 @@ function App() {
   const [toast, setToast] = useState("");
   const [voice, setVoice] = useState<VoiceChoice>(loadVoiceChoice);
   const [welcome, setWelcome] = useState(needsWelcome);
+  const [recordPhrase, setRecordPhrase] = useState<
+    (Phrase & { lessonId: number }) | null
+  >(null);
+  const [recordingBusy, setRecordingBusy] = useState(false);
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("All phrases");
   useEffect(() => {
@@ -114,7 +122,7 @@ function App() {
   } = usePronunciation(progress.sound, setToast, voice);
   useEffect(() => {
     stopAudio();
-  }, [page, session, settings, welcome, authMode, stopAudio]);
+  }, [page, session, settings, welcome, authMode, recordPhrase, stopAudio]);
   function complete(lesson: Lesson, practice: boolean, score: number) {
     const xp = practice ? 10 : 30;
     setProgress((p) => ({
@@ -738,6 +746,12 @@ function App() {
                                 }
                               />
                             </button>
+                            <button
+                              onClick={() => setRecordPhrase(p)}
+                              aria-label={`Record ${p.en}`}
+                            >
+                              <Mic size={18} />
+                            </button>
                           </div>
                         </div>
                       </article>
@@ -1037,13 +1051,53 @@ function App() {
           speak={speak}
           speaking={speaking}
           stopAudio={stopAudio}
+          userId={account.user?.id}
+          onSignIn={() => {
+            setSession(null);
+            setAuthMode("signin");
+          }}
         />
+      )}
+      {recordPhrase && (
+        <Modal
+          title={`Say it: ${recordPhrase.en}`}
+          onClose={() => setRecordPhrase(null)}
+        >
+          <div className="recording-prompt">
+            <span lang="ar" dir="rtl">
+              {recordPhrase.ar}
+            </span>
+            <p>{recordPhrase.latin}</p>
+            <button
+              type="button"
+              className="secondary"
+              disabled={recordingBusy}
+              onClick={() => speak(recordPhrase)}
+            >
+              <Volume2 size={17} />
+              Listen to Zaytoun
+            </button>
+          </div>
+          <PhraseRecorder
+            key={`${account.user?.id}:${recordPhrase.ar}`}
+            phrase={recordPhrase}
+            lessonId={recordPhrase.lessonId}
+            userId={account.user?.id}
+            stopAudio={stopAudio}
+            onBusyChange={setRecordingBusy}
+            onSignIn={() => {
+              setRecordPhrase(null);
+              setAuthMode("signin");
+            }}
+          />
+        </Modal>
       )}
       {welcome &&
         !authMode &&
         !account.recovery &&
         !settings &&
         !session &&
+        !recordPhrase &&
         !about && (
           <WelcomeModal
             voice={voice}
@@ -1188,6 +1242,8 @@ function LessonModal({
   speak,
   speaking,
   stopAudio,
+  userId,
+  onSignIn,
 }: {
   lesson: Lesson;
   practice: boolean;
@@ -1200,7 +1256,10 @@ function LessonModal({
   speak: (p: Phrase) => void;
   speaking: string | null;
   stopAudio: () => void;
+  userId?: string;
+  onSignIn: () => void;
 }) {
+  const [recordingBusy, setRecordingBusy] = useState(false);
   const [stage, setStage] = useState<"learn" | "quiz" | "result">(
     practice ? "quiz" : "learn",
   );
@@ -1358,6 +1417,7 @@ function LessonModal({
               </span>
               <button
                 className="big-audio"
+                disabled={recordingBusy}
                 onClick={() => speak(current)}
                 aria-label={`Hear ${current.en}`}
                 aria-pressed={speaking === current.ar}
@@ -1383,8 +1443,18 @@ function LessonModal({
                   </p>
                 </div>
               </div>
+              <PhraseRecorder
+                key={`${userId}:${current.ar}`}
+                phrase={current}
+                lessonId={lesson.id}
+                userId={userId}
+                stopAudio={stopAudio}
+                onSignIn={onSignIn}
+                onBusyChange={setRecordingBusy}
+              />
               <button
                 className="primary"
+                disabled={recordingBusy}
                 onClick={() => {
                   if (index < lesson.phrases.length - 1) setIndex(index + 1);
                   else {
@@ -1607,6 +1677,9 @@ function SettingsModal({
               </p>
             )}
           </div>
+        )}
+        {account.user && (
+          <ContributionsPanel key={account.user.id} userId={account.user.id} />
         )}
         <label>
           Your first name

@@ -35,6 +35,8 @@ jobs:
         run: npm run test:accounts
       - name: Verify database access rules
         run: npm run test:security
+      - name: Test reviewed recording export
+        run: python3 -m unittest discover -s scripts/voice -p 'test_contribution_export.py'
       - name: Build for GitHub Pages
         env:
           VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
