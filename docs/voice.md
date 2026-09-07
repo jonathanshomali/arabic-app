@@ -64,6 +64,18 @@ npm run voice:check
 Selective recognition rejects stale results for any unselected clip. Generated
 replacements keep `nativeReviewed: false` until their pronunciation is approved.
 
+For **الله معك**, the owner requested a deeper opening vowel in Allah and
+explicitly approved the existing ma'ak. The synthesis input now starts with
+`ɑ` instead of `a`. Only the opening is replaced: a 10 ms crossfade into the
+first /l/ joins the new prefix to the retained synthetic recording. All PCM from
+0.70 seconds onward, including the entire ma'ak, is byte-identical to the prior
+clip. `preserveTail` settings and the hash-pinned original in
+`scripts/voice/fixtures/allah-maak-original.wav` make this edit reproducible;
+`voice:check` verifies preservation on every build. The supplied human recording
+is a private reference and is not included in the app. Phoneme recognition
+detects the opening changing from /ɛ/ toward /a/; final listening review remains
+with the owner.
+
 ## Static-noise fix
 
 The first pack contained noise because the installed Kokoro loader silently

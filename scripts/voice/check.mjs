@@ -19,6 +19,9 @@ const manifest = JSON.parse(await readFile("src/audioManifest.json", "utf8"));
 const recognition = JSON.parse(
   await readFile("scripts/voice/recognition.json", "utf8"),
 );
+const synthesisSettings = JSON.parse(
+  await readFile("scripts/voice/synthesis-settings.json", "utf8"),
+);
 const recognized = new Map(recognition.clips.map((row) => [row.phrase, row]));
 const expected = [...allPhrases.map((p) => p.ar), "حبيبي"].sort();
 assert.deepEqual(
@@ -46,6 +49,22 @@ for (const [phrase, path] of Object.entries(manifest.clips)) {
     "Reasonable duration",
   );
   checkSignal(wav);
+  const preserved = synthesisSettings[phrase]?.preserveTail;
+  if (preserved) {
+    const original = await readFile(`scripts/voice/${preserved.file}`);
+    assert.equal(
+      createHash("sha256").update(original).digest("hex"),
+      preserved.sha256,
+    );
+    const oldStart = Math.round(preserved.originalStart * 24000);
+    const overlap = Math.round(preserved.crossfade * 24000);
+    const newEnd = Math.round(preserved.generatedEnd * 24000);
+    assert.deepEqual(
+      wav.subarray(44 + newEnd * 2),
+      original.subarray(44 + (oldStart + overlap) * 2),
+      `Approved audio suffix changed: ${phrase}`,
+    );
+  }
   const row = recognized.get(phrase);
   assert.ok(row, `Missing speech-recognition result: ${phrase}`);
   assert.equal(row.file, path);

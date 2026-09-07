@@ -1,4 +1,15 @@
 {
   "مرحبا": { "speed": 0.7, "seed": 42 },
-  "كيفك؟": { "speed": 0.7, "seed": 42 }
+  "كيفك؟": { "speed": 0.7, "seed": 42 },
+  "الله معك": {
+    "speed": 0.9,
+    "seed": 42,
+    "preserveTail": {
+      "file": "fixtures/allah-maak-original.wav",
+      "sha256": "f8c318806276a54528dd1232dc5a040439f7e54c7679ed85222cd974fa81a147",
+      "originalStart": 0.69,
+      "generatedEnd": 0.7,
+      "crossfade": 0.01
+    }
+  }
 }

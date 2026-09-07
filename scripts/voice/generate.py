@@ -13,6 +13,7 @@ import soundfile as sf
 import torch
 from huggingface_hub import hf_hub_download
 from model_loader import load_model
+from audio_edits import preserve_tail
 
 MODEL_ID = "hamdallah/Sofelia-TTS-82M"
 REVISION = "e1b729a4641311df2d78a22d81c42c10bfda64db"
@@ -93,6 +94,13 @@ def main():
         samples = samples * min(1.0, 0.95 / max(peak, 0.001))
         # A short trailing pad prevents final consonants being lost at playback end.
         samples = np.pad(samples, (0, int(RATE * 0.12)))
+        if "preserveTail" in options:
+            samples = preserve_tail(samples, RATE, options["preserveTail"], HERE)
+            rms = float(np.sqrt(np.mean(samples ** 2)))
+            if (not np.isfinite(samples).all() or not 0.25 <= len(samples) / RATE <= 15
+                    or rms < 0.002 or np.abs(samples).max() >= 0.999
+                    or np.sum(np.diff(samples) ** 2) / np.sum(samples ** 2) >= 1.8):
+                raise ValueError(f"Invalid edited audio for {phrase['ar']}")
         digest = hashlib.sha256(samples.tobytes()).hexdigest()[:16]
         filename = f"{digest}.wav"
         sf.write(out / filename, samples, RATE, subtype="PCM_16")
