@@ -73,14 +73,22 @@ retaining the generated pitch contour. `vowelResonance` settings record the
 frequency mapping and its fade boundaries. These are synthesis controls, not
 guaranteed measured formants or proof of an exact native pronunciation.
 
-A 20 ms crossfade joins the new prefix to the original first /l/. Original PCM
-from 0.71 seconds onward, including the entire ma'ak, is copied unchanged and
-starts at 0.92 seconds in the longer revised clip. `preserveTail` settings and the hash-pinned original in
-`scripts/voice/fixtures/allah-maak-original.wav` make this edit reproducible;
-`voice:check` verifies preservation on every build. The supplied human recording
-is a private reference and is not included in the app. Final listening review
-remains with the owner; automatic phoneme recognition alone missed the original
-brightness issue.
+The owner approved the revised "uh" vowel but reported a voice crack. The old
+crossfade mixed approximately 275 Hz and 330 Hz voicing, causing a brief loss of
+periodicity. The 20 ms join now runs from 0.88 to 0.90 seconds, aligned to source
+sample 18070 (0.7529167 seconds), where pitch and waveform phase match. The
+approved prefix through 0.88 seconds remains byte-for-byte identical. Original
+PCM from sample 18550 (0.7729167 seconds), including the entire ma'ak, is copied
+unchanged and starts at 0.90 seconds in the revised clip.
+
+`preserveTail` settings and the hash-pinned original in
+`scripts/voice/fixtures/allah-maak-original.wav` make this edit reproducible.
+`voice:check` verifies the prefix and suffix, and checks periodicity across the
+join against the previous broken synthetic clip, retained as
+`fixtures/allah-maak-cracked.wav`. This targets the splice artifact; it does not
+certify naturalness. The supplied human recording is a private reference and
+is not included in the app. Final listening review remains with the owner;
+automatic phoneme recognition alone missed the original brightness issue.
 
 ## Static-noise fix
 

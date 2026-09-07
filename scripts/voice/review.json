@@ -798,9 +798,9 @@
     "latin": "alla ma‘ak / alla ma‘ik",
     "en": "God be with you",
     "phonemes": "ˈʌːllɑ mˈaʕak",
-    "file": "2b82f3e1675c1f68.wav",
-    "seconds": 2.23,
-    "rms": 0.09377,
+    "file": "282cdb282e40c47c.wav",
+    "seconds": 2.147,
+    "rms": 0.08601,
     "nativeReviewed": false,
     "speed": 0.9,
     "seed": 42,
@@ -826,8 +826,8 @@
     "preserveTail": {
       "file": "fixtures/allah-maak-original.wav",
       "sha256": "f8c318806276a54528dd1232dc5a040439f7e54c7679ed85222cd974fa81a147",
-      "originalStart": 0.69,
-      "generatedEnd": 0.92,
+      "originalStart": 0.7529166666666667,
+      "generatedEnd": 0.9,
       "crossfade": 0.02
     }
   },
