@@ -4,12 +4,19 @@
   "الله معك": {
     "speed": 0.9,
     "seed": 42,
+    "vowelResonance": {
+      "start": 0.6,
+      "end": 0.92,
+      "fade": 0.03,
+      "sourceHz": [0, 580, 2000, 3250, 12000],
+      "targetHz": [0, 680, 1400, 3200, 12000]
+    },
     "preserveTail": {
       "file": "fixtures/allah-maak-original.wav",
       "sha256": "f8c318806276a54528dd1232dc5a040439f7e54c7679ed85222cd974fa81a147",
       "originalStart": 0.69,
-      "generatedEnd": 0.7,
-      "crossfade": 0.01
+      "generatedEnd": 0.92,
+      "crossfade": 0.02
     }
   }
 }

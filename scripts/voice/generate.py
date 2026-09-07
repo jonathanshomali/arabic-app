@@ -13,7 +13,7 @@ import soundfile as sf
 import torch
 from huggingface_hub import hf_hub_download
 from model_loader import load_model
-from audio_edits import preserve_tail
+from audio_edits import preserve_tail, shape_vowel
 
 MODEL_ID = "hamdallah/Sofelia-TTS-82M"
 REVISION = "e1b729a4641311df2d78a22d81c42c10bfda64db"
@@ -94,6 +94,10 @@ def main():
         samples = samples * min(1.0, 0.95 / max(peak, 0.001))
         # A short trailing pad prevents final consonants being lost at playback end.
         samples = np.pad(samples, (0, int(RATE * 0.12)))
+        if "vowelResonance" in options:
+            if "preserveTail" not in options:
+                raise ValueError("Vowel resynthesis must preserve the approved audio suffix")
+            samples = shape_vowel(samples, RATE, options["vowelResonance"])
         if "preserveTail" in options:
             samples = preserve_tail(samples, RATE, options["preserveTail"], HERE)
             rms = float(np.sqrt(np.mean(samples ** 2)))
